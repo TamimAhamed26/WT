@@ -65,7 +65,12 @@
                         <tr>
                             <th>Religion</th>
                             <td>:</td>
-                            <td><input type="text" name="religion" required></td>
+                            <td>
+                                <input type="radio" name="religion" value="Islam" required> Islam
+                                <input type="radio" name="religion" value="Hindu" required> Hindu
+                                <input type="radio" name="religion" value="Christian" required> Christian
+                                <input type="radio" name="religion" value="Other" required> Other
+                            </td>
                         </tr>
                         <tr><td><br></td></tr>
                     </table>
