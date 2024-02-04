@@ -68,10 +68,14 @@
                             <th>Religion</th>
                             <td>:</td>
                             <td>
-                                <input type="radio" name="religion" value="Islam" required> Islam
-                                <input type="radio" name="religion" value="Hindu" required> Hindu
-                                <input type="radio" name="religion" value="Christian" required> Christian
-                                <input type="radio" name="religion" value="Other" required> Other
+                                <input type="radio" name="religion" value="Islam" id="islam" required>
+                                <label for="islam">Islam</label>
+                                <input type="radio" id="hindu"  name="religion" value="Hindu" required> 
+                                <label for="hindu">Hindu</label>
+                                <input type="radio" id="christian"  name="religion" value="Christian" required> 
+                                <label for="christian">Christian</label>
+                                <input type="radio" id="other" name="religion" value="Other" required>
+                                <label for="other">Other</label> 
                             </td>
                         </tr>
                         <tr><td><br></td></tr>
@@ -79,9 +83,16 @@
                             <th>Hobbies</th>
                             <td>:</td>
                             <td>
-                                <input type="checkbox" name="hobbies[]" value="Reading"> Reading
-                                <input type="checkbox" name="hobbies[]" value="Gaming"> Gaming
-                                <input type="checkbox" name="hobbies[]" value="Sports"> Sports
+                                <input type="checkbox" id="reading" name="hobbies[]" value="Reading">
+                                 <label for="reading">Reading</label>
+                                <input type="checkbox" id="gaming"  name="hobbies[]" value="Gaming"> 
+                                <label for="gaming">Gaming</label>
+                                <input type="checkbox" id="sport" name="hobbies[]" value="Sports">
+                                <label for="sport">Sports</label>
+                                <input type="checkbox" id="music" name="hobbies[]" value="Music">
+                                <label for="music">Music</label>
+                                <input type="checkbox" id="others" name="hobbies[]" value="Others">
+                                <label for="others"> Others</label>
                             </td>
                         </tr>
                         <tr><td><br></td></tr>
@@ -92,9 +103,9 @@
                         </tr>
                         <tr><td><br></td></tr>
                         <tr>
-                            <th>Password</th>
+                            <th><label for="password"> Password</label> </th>
                             <td>:</td>
-                            <td><input type="password" name="password" required></td>
+                            <td><input type="password" id="password" name="password" required></td>
                         </tr>
                         <tr><td><br></td></tr>
                     </table>
