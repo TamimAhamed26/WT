@@ -83,7 +83,7 @@
                         <tr><td><br></td></tr>
                     
                         <tr>
-                            <th>Email</th>
+                            <th for>Email </th>
                             <td>:</td>
                             <td><input type="email" name="email" required placeholder="example@example.com"></td>
                         </tr>
