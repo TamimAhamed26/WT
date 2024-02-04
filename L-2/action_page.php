@@ -1,5 +1,3 @@
-
-
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
@@ -13,9 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $_POST["phone"];
     $website = $_POST["website"];
     $address = $_POST["address"];
-
- 
-
+    $hobbies = $_POST["hobbies"];
+    $date_of_birth = $_POST["date_of_birth"];
 
     echo "<h2>Submitted Information:</h2>";
     echo "<p>First Name: $first_name</p>";
@@ -28,8 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<p>Phone/Mobile: $phone</p>";
     echo "<p>Website: $website</p>";
     echo "<p>Present Address: $address</p>";
+    echo "<p>Hobbies: " . implode(", ", $hobbies) . "</p>";
+    echo "<p>Date of Birth: $date_of_birth</p>";
 } else {
     echo "<p>No data submitted. Please go back and fill out the form.</p>";
 }
 ?>
-

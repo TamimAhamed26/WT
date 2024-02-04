@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Profile</h1>
-    <form action="action_page.php" autocomplete="off"  method="post" >
+    <form action="action_page.php" autocomplete="off"  method="post" target="_blank" >
 
     <table>
         <tr>
@@ -19,36 +19,38 @@
                         <legend>General Information:</legend>
                         <tr><td><br></td></tr>
                         <tr>
-                            <th>First Name</th>
-                            <td>:</td>
-                            <td><input type="text" name="first-name" required></td>
-                        </tr>
-                        <tr><td><br></td></tr>
-                        <tr>
-                            <th>Last Name</th>
-                            <td>:</td>
-                            <td><input type="text" name="last-name" required></td>
-                        </tr>
-                        <tr><td><br></td></tr>
-                    
-                        <tr>
-                            <th>Father's Name</th>
-                            <td>:</td>
-                            <td><input type="text" name="father-name" required></td>
-                        </tr>
-                        <tr><td><br></td></tr>
-                    
-                        <tr>
-                            <th>Mother's Name</th>
-                            <td>:</td>
-                            <td><input type="text" name="mother-name" required></td>
-                        </tr>
-                        <tr><td><br></td></tr>
-                        <tr>
-                            <th>Blood Group</th>
+                            <th><label for="first-name">First Name</label></th>
                             <td>:</td>
                             <td>
-                                <select name="blood-group" required>
+                                <input type="text" id="first-name" name="first-name" required>
+                            </td>
+                        </tr>
+                        <tr><td><br></td></tr>
+                        <tr>
+                            <th><label for="last-name"> Last Name></label></th>
+                            <td>:</td>
+                            <td><input type="text" id="last-name" name="last-name" required></td>
+                        </tr>
+                        <tr><td><br></td></tr>
+                    
+                        <tr>
+                            <th><label for="father-name"> Father's Name</label></th>
+                            <td>:</td>
+                            <td><input type="text" id="father-name" name="father-name" required></td>
+                        </tr>
+                        <tr><td><br></td></tr>
+                    
+                        <tr>
+                            <th><label for="mother-name"> Mother's Name</label></th>
+                            <td>:</td>
+                            <td><input type="text" id="mother-name" name="mother-name" required></td>
+                        </tr>
+                        <tr><td><br></td></tr>
+                        <tr>
+                            <th> <label for="blood-group"> Blood Group<label</th>
+                            <td>:</td>
+                            <td>
+                                <select id="blood-group" name="blood-group"required>
                                     <option value="">Select Blood Group</option>
                                     <option value="A+">A+</option>
                                     <option value="A-">A-</option>
@@ -71,6 +73,28 @@
                                 <input type="radio" name="religion" value="Christian" required> Christian
                                 <input type="radio" name="religion" value="Other" required> Other
                             </td>
+                        </tr>
+                        <tr><td><br></td></tr>
+                        <tr>
+                            <th>Hobbies</th>
+                            <td>:</td>
+                            <td>
+                                <input type="checkbox" name="hobbies[]" value="Reading"> Reading
+                                <input type="checkbox" name="hobbies[]" value="Gaming"> Gaming
+                                <input type="checkbox" name="hobbies[]" value="Sports"> Sports
+                            </td>
+                        </tr>
+                        <tr><td><br></td></tr>
+                        <tr>
+                            <th><label for ="date_of_birth"> Date of Birth</label></th>
+                            <td>:</td>
+                            <td><input type="date" id="date_of_birth" name="date_of_birth" required></td>
+                        </tr>
+                        <tr><td><br></td></tr>
+                        <tr>
+                            <th>Password</th>
+                            <td>:</td>
+                            <td><input type="password" name="password" required></td>
                         </tr>
                         <tr><td><br></td></tr>
                     </table>
