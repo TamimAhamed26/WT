@@ -1,6 +1,3 @@
-<?php
-  
-?>
 
 <html>
 <head>
@@ -27,12 +24,24 @@
                         </tr>
                         <tr><td><br></td></tr>
                         <tr>
-                            <th><label for="last-name"> Last Name></label></th>
+                            <th><label for="last-name"> Last Name</label></th>
                             <td>:</td>
                             <td><input type="text" id="last-name" name="last-name" required></td>
                         </tr>
                         <tr><td><br></td></tr>
                     
+                        <tr>
+                            <th>Gender</th>
+                            <td>:</td>
+                            <td>
+                                <input type="radio" name="gender" value="Male" id="male" required>
+                                <label for="male">Male</label>
+                                <input type="radio" id="female"  name="gender" value="Female" required> 
+                                <label for="female">Female</label>
+                                
+                            </td>
+                        </tr>
+                        <tr><td><br></td></tr>
                         <tr>
                             <th><label for="father-name"> Father's Name</label></th>
                             <td>:</td>
@@ -65,49 +74,20 @@
                         </tr>
                         <tr><td><br></td></tr>
                         <tr>
-                            <th>Religion</th>
+                            <th> <label for="religion"> Religion <label</th>
                             <td>:</td>
                             <td>
-                                <input type="radio" name="religion" value="Islam" id="islam" required>
-                                <label for="islam">Islam</label>
-                                <input type="radio" id="hindu"  name="religion" value="Hindu" required> 
-                                <label for="hindu">Hindu</label>
-                                <input type="radio" id="christian"  name="religion" value="Christian" required> 
-                                <label for="christian">Christian</label>
-                                <input type="radio" id="other" name="religion" value="Other" required>
-                                <label for="other">Other</label> 
+                                <select id="religion" name="religion"required>
+                                    <option value="">Please select religion</option>
+                                    <option value="Islam">Islam</option>
+                                    <option value="Hinduism">Hinduism</option>
+                                    <option value="Other">Other</option>
+                           
+                                </select>
                             </td>
                         </tr>
                         <tr><td><br></td></tr>
-                        <tr>
-                            <th>Hobbies</th>
-                            <td>:</td>
-                            <td>
-                                <input type="checkbox" id="reading" name="hobbies[]" value="Reading">
-                                 <label for="reading">Reading</label>
-                                <input type="checkbox" id="gaming"  name="hobbies[]" value="Gaming"> 
-                                <label for="gaming">Gaming</label>
-                                <input type="checkbox" id="sport" name="hobbies[]" value="Sports">
-                                <label for="sport">Sports</label>
-                                <input type="checkbox" id="music" name="hobbies[]" value="Music">
-                                <label for="music">Music</label>
-                                <input type="checkbox" id="others" name="hobbies[]" value="Others">
-                                <label for="others"> Others</label>
-                            </td>
-                        </tr>
-                        <tr><td><br></td></tr>
-                        <tr>
-                            <th><label for ="date_of_birth"> Date of Birth</label></th>
-                            <td>:</td>
-                            <td><input type="date" id="date_of_birth" name="date_of_birth" required></td>
-                        </tr>
-                        <tr><td><br></td></tr>
-                        <tr>
-                            <th><label for="password"> Password</label> </th>
-                            <td>:</td>
-                            <td><input type="password" id="password" name="password" required></td>
-                        </tr>
-                        <tr><td><br></td></tr>
+                       
                     </table>
                 </fieldset>
             </td>
@@ -118,44 +98,98 @@
                         <tr><td><br></td></tr>
                     
                         <tr>
-                            <th for>Email </th>
+                            <th><label for="email"> Email</label></th>
                             <td>:</td>
-                            <td><input type="email" name="email" required placeholder="example@example.com"></td>
+                            <td><input type="email" id="email" name="email" required placeholder="example@example.com"></td>
                         </tr>
                         <tr><td><br></td></tr>
                     
                         <tr>
-                            <th>Phone/Mobile</th>
+                            <th><label for="phone">Phone/Email</label></th>
                             <td>:</td>
-                            <td><input type="tel" name="phone" required></td>
+                            <td><input type="tel" id="phone" name="phone" required></td>
                         </tr>
                         <tr><td><br></td></tr>
                     
                         <tr>
-                            <th>Website</th>
+                            <th><label for ="website"> Website</label></th>
                             <td>:</td>
-                            <td><input type="url" name="website" required placeholder="http://www.example.com"></td>
+                            <td><input type="url" id="website" name="website" required placeholder="http://www.example.com"></td>
                         </tr>
                         <tr><td><br></td></tr>
                     
                         <tr>
-                            <th>Present Address</th>
+                            <th><label for="address">Address</label></th>
                             <td>:</td>
-                            <td><input type="text" name="address" required></td>
-                        </tr>
-                        <tr><td><br></td></tr>
+                            <td>
+                            <fieldset>
+                               <legend>Present Address</legend>
+                               <select id="country" name="country">
+                                 <option value="country">Bangladesh</option>
+                                 <option value="country">Canada</option>
+                                 <option value="country">India</option>
+                                 <option value="country">Pakistan</option>
+                                 <option value="country">United States of America</option>
+                                 <option value="country">Others</option>
+                              </select>
+                              <select id="city" name="city">
+                                 <option value="city">Dhaka</option>
+                                 <option value="city">Dinajpur</option>
+                                 <option value="city">Potuakhali</option>
+                                 <option value="city">Rajshahi</option>
+                                 <option value="city">Others</option>
+                              </select><br>
+                              <textarea name="message" rows="6" cols="30" placeholder="Road/Street/City"></textarea>
+                              <input type="text" id="postcode" name="postcode" placeholder="Post Code">
+                            </fieldset>
+                               </td>
+                           </tr>
                     </table>
                 </fieldset>
             </td>
-        </tr>
+            <td>
+                <fieldset>
+                    <table>
+                        <legend>Account Information:</legend>
+                        <tr><td><br></td></tr>
+                    
+                        <tr>
+                            <th><label for="user-name">Usertname</label></th>
+                            <td>:</td>
+                            <td>
+                                <input type="text" id="user-name" name="user-name" required>
+                            </td>
+                        </tr>
+                        <tr><td><br></td></tr>
+                        <tr>
+                            <th><label for="password">Password</label></th>
+                            <td>:</td>
+                            <td>
+                                <input type="password" id="password" name="password" required>
+                            </td>
+                        </tr>
+                        <tr><td><br></td></tr>
+                    
+                        <tr>
+                            <th><label for="confirm-password">Confirm Password</label></th>
+                            <td>:</td>
+                            <td>
+                                <input type="password" id="confirm-password" name="confirm-password" required>
+                            </td>
+            </td> 
+                   
+           
+            
+            </table>
+            </fieldset>  
+            <br>
+            <input type="submit" value="Register">  
+
+            </td>
+          </tr>
+        </form>
+      
     </table>
-    
-    <input type="submit" value="Submit">
-
-    <input type="reset" value="Reset">
-    
-
-    </form>
 
 </body>
 </html>
