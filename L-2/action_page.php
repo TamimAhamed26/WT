@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $phone = $_POST["phone"];
     $website = $_POST["website"];
-    
+    $gender = $_POST["gender"];
     
     $country = $_POST["country"];
     $city = $_POST["city"];
@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<p>Email: $email</p>";
     echo "<p>Phone/Mobile: $phone</p>";
     echo "<p>Website: $website</p>";
+    echo "<p>Gender: $gender</p>";
     echo "<p>Present Address: $address, $city, $country, $postcode</p>";
     echo "<p>Username: $user_name</p>";
 
