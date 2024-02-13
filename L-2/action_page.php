@@ -56,9 +56,9 @@ echo '<table>
                     <th>Gender</th>
                     <td>:</td>
                     <td>
-                        <input type="radio" disabled value="Male" id="male" ' . ($gender == "Male" ? "checked" : "") . '>
+                        <input type="radio"  value="Male" id="male" ' . ($gender == "Male" ? "checked" : "disabled") . '>
                         <label for="male">Male</label>
-                        <input type="radio" disabled value="Female" id="female" ' . ($gender == "Female" ? "checked" : "") . '>
+                        <input type="radio" value="Female" id="female" ' . ($gender == "Female" ? "checked" : "disabled") . '>
                         <label for="female">Female</label>
                     </td>
                 </tr>
@@ -89,16 +89,16 @@ echo '<table>
                     <th> <label for="blood-group"> Blood Group<label</th>
                     <td>:</td>
                     <td>
-                        <select id="blood-group" name="blood-group" disabled >
-                            <option  value=""'    . ($blood_group == "" ? "selected" : "") . '>Select Blood Group </option>
-                            <option value="A+" ' . ($blood_group == "A+" ? "selected" : "") . '>A+</option>
-                            <option value="A-" ' . ($blood_group == "A-" ? "selected" : "") . '>A-</option>
-                            <option value="B+" ' . ($blood_group == "B+" ? "selected" : "") . '>B+</option>
-                            <option value="B-" ' . ($blood_group == "B-" ? "selected" : "") . '>B-</option>
-                            <option value="AB+" ' . ($blood_group == "AB+" ? "selected" : "") . '>AB+</option>
-                            <option value="AB-" ' . ($blood_group == "AB-" ? "selected" : "") . '>AB-</option>
-                            <option value="O+" ' . ($blood_group == "O+" ? "selected" : "") . '>O+</option>
-                            <option value="O-" ' . ($blood_group == "O-" ? "selected" : "") . '>O-</option>
+                        <select id="blood-group" name="blood-group"  >
+                            <option  value=""'    . ($blood_group == "" ? "selected" : "disabled") . '>Select Blood Group </option>
+                            <option value="A+" ' . ($blood_group == "A+" ? "selected" : "disabled") . '>A+</option>
+                            <option value="A-" ' . ($blood_group == "A-" ? "selected" : "disabled") . '>A-</option>
+                            <option value="B+" ' . ($blood_group == "B+" ? "selected" : "disabled") . '>B+</option>
+                            <option value="B-" ' . ($blood_group == "B-" ? "selected" : "disabled") . '>B-</option>
+                            <option value="AB+" ' . ($blood_group == "AB+" ? "selected" : "disabled") . '>AB+</option>
+                            <option value="AB-" ' . ($blood_group == "AB-" ? "selected" : "disabled") . '>AB-</option>
+                            <option value="O+" ' . ($blood_group == "O+" ? "selected" : "disabled") . '>O+</option>
+                            <option value="O-" ' . ($blood_group == "O-" ? "selected" : "disabled") . '>O-</option>
                         </select>
                     </td>
                 </tr>
@@ -109,11 +109,11 @@ echo '<table>
                         <th> <label for="religion"> Religion <label</th>
                         <td>:</td>
                         <td>
-                            <select id="religion" name="religion" disabled >
-                                <option value=""   '   . ($religion == "" ? "selected" : "") . ' >Please select religion</option>
-                                <option value="Islam" ' . ($religion == "Islam" ? "selected" : "") . '>Islam</option>
-                                <option value="Hinduism" ' . ($religion == "Hinduism" ? "selected" : "") . '>Hinduism</option>
-                                <option value="Other" ' . ($religion == "Other" ? "selected" : "") . '>Other</option>
+                            <select id="religion" name="religion"  >
+                                <option value=""   '   . ($religion == "" ? "selected" : "disabled") . ' >Please select religion</option>
+                                <option value="Islam" ' . ($religion == "Islam" ? "selected" : "disabled") . '>Islam</option>
+                                <option value="Hinduism" ' . ($religion == "Hinduism" ? "selected" : "disabled") . '>Hinduism</option>
+                                <option value="Other" ' . ($religion == "Other" ? "selected" : "disabled") . '>Other</option>
                             </select>
                         </td>
                     </tr>
@@ -166,20 +166,20 @@ echo '<table>
                         <td>
                             <fieldset>
                                 <legend>Present Address</legend>
-                                <select id="country" name="country" disabled>
-                                <option value="Bangladesh"' . ($country == "Bangladesh" ? " selected" : "") . '>Bangladesh</option>
-                                <option value="Canada"' . ($country == "Canada" ? " selected" : "") . '>Canada</option>
-                                <option value="India"' . ($country == "India" ? " selected" : "") . '>India</option>
-                                <option value="Pakistan"' . ($country == "Pakistan" ? " selected" : "") . '>Pakistan</option>
-                                <option value="United States of America"' . ($country == "United States of America" ? " selected" : "") . '>United States of America</option>
-                                <option value="Others"' . ($country == "Others" ? " selected" : "") . '>Others</option>
+                                <select id="country" name="country" >
+                                <option value="Bangladesh"' . ($country == "Bangladesh" ? " selected" : "disabled") . '>Bangladesh</option>
+                                <option value="Canada"' . ($country == "Canada" ? " selected" : "disabled") . '>Canada</option>
+                                <option value="India"' . ($country == "India" ? " selected" : "disabled") . '>India</option>
+                                <option value="Pakistan"' . ($country == "Pakistan" ? " selected" : "disabled") . '>Pakistan</option>
+                                <option value="United States of America"' . ($country == "United States of America" ? " selected" : "disabled") . '>United States of America</option>
+                                <option value="Others"' . ($country == "Others" ? " selected" : "disabled") . '>Others</option>
                             </select>
-                            <select id="city" name="city" disabled >
-                            <option value="Dhaka" ' . ($city == "Dhaka" ? "selected" : "") .'>Dhaka</option>
-                            <option value="Dinajpur" ' . ($city =="Dinajpur" ? "selected" : "") .'>Dinajpur</option>
-                            <option value="Potuakhali" ' . ($city=="Potuakhali" ? "selected" : "").'>Potuakhali</option>
-                            <option value="Rajshahi" '. ($city=="Rajshahi"  ? "selected" : "").'>Rajshahi</option>
-                            <option value="Others" '.($city=="Others" ? "selected" : "").'>Others</option>
+                            <select id="city" name="city"  >
+                            <option value="Dhaka" ' . ($city == "Dhaka" ? "selected" : "disabled") .'>Dhaka</option>
+                            <option value="Dinajpur" ' . ($city =="Dinajpur" ? "selected" : "disabled") .'>Dinajpur</option>
+                            <option value="Potuakhali" ' . ($city=="Potuakhali" ? "selected" : "disabled").'>Potuakhali</option>
+                            <option value="Rajshahi" '. ($city=="Rajshahi"  ? "selected" : "disabled").'>Rajshahi</option>
+                            <option value="Others" '.($city=="Others" ? "selected" : "disabled").'>Others</option>
                         </select><br>
                                 <textarea name="message" rows="6" cols="30" readonly>' . $address . '</textarea>
                                 <input type="text" readonly value="' . $postcode . '">
