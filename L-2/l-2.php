@@ -1,4 +1,4 @@
-<?php
+<?php  
 ?>
 <html>
 <head>
@@ -106,6 +106,7 @@
                                                         </table>
                                                     </fieldset>
                                                 </td>
+                                            
                                                 <td>
                                                     <fieldset>
                                                         <table>
@@ -148,19 +149,19 @@
                                                                     <fieldset>
                                                                         <legend>Present Address</legend>
                                                                         <select id="country" name="country">
-                                                                            <option value="country">Bangladesh</option>
-                                                                            <option value="country">Canada</option>
-                                                                            <option value="country">India</option>
-                                                                            <option value="country">Pakistan</option>
-                                                                            <option value="country">United States of America</option>
-                                                                            <option value="country">Others</option>
+                                                                            <option value="Bangladesh">Bangladesh</option>
+                                                                            <option value="Canada">Canada</option>
+                                                                            <option value="India">India</option>
+                                                                            <option value="Pakistan">Pakistan</option>
+                                                                            <option value="United States of America">United States of America</option>
+                                                                            <option value="Others">Others</option>
                                                                         </select>
                                                                         <select id="city" name="city">
-                                                                            <option value="city">Dhaka</option>
-                                                                            <option value="city">Dinajpur</option>
-                                                                            <option value="city">Potuakhali</option>
-                                                                            <option value="city">Rajshahi</option>
-                                                                            <option value="city">Others</option>
+                                                                            <option value="Dhaka">Dhaka</option>
+                                                                            <option value="Dinajpur">Dinajpur</option>
+                                                                            <option value="Potuakhali">Potuakhali</option>
+                                                                            <option value="Rajshahi">Rajshahi</option>
+                                                                            <option value="Others">Others</option>
                                                                         </select><br>
                                                                         <textarea name="message" rows="6" cols="30" placeholder="Road/Street/City"></textarea>
                                                                         <input type="text" id="postcode" name="postcode" placeholder="Post Code">
@@ -169,7 +170,8 @@
                                                             </tr>
                                                         </table>
                                                     </fieldset>
-                                                </td>
+                                                 </td>
+                                   
                                                 <td>
                                                     <fieldset>
                                                         <table>
@@ -179,7 +181,7 @@
                                                             </tr>
 
                                                             <tr>
-                                                                <th><label for="user-name">Usertname</label></th>
+                                                                <th><label for="user-name">Username</label></th>
                                                                 <td>:</td>
                                                                 <td>
                                                                     <input type="text" id="user-name" name="user-name">
@@ -217,7 +219,7 @@
 
 
 
-                                                </td>
+                                              
                                             </tr>
                                         </table>
     </form>
