@@ -1,27 +1,72 @@
 <?php
 
+
 $user_name = $password = $confirm_password = $gender = $first_name = $last_name = $father_name = $mother_name = $blood_group = $religion = $email = $phone = $website = $country = $city = $address = $postcode = "";
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+function validateField($fieldName, $errorMessage) {
+    if (empty($_POST[$fieldName])) {
+        return $errorMessage;
+    } else {
+        $field = test_input($_POST[$fieldName]);
+        if (!preg_match("/^[a-zA-Z-' ]*$/", $field)) {
+            return "Only letters and white space allowed for " . $errorMessage;
+        }
+        return $field;
+    }
+}
+
+function validateEmail($fieldName, $errorMessage) {
+    if (empty($_POST[$fieldName])) {
+        return $errorMessage;
+    } else {
+        $email = test_input($_POST[$fieldName]);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return "Invalid email format";
+        }
+        return $email;
+    }
+}
+
+function validateWebsite($fieldName, $errorMessage) {
+    if (empty($_POST[$fieldName])) {
+        return $errorMessage;
+    } else {
+        $website = test_input($_POST[$fieldName]);
+        if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $website)) {
+            return "Invalid URL";
+        }
+        return $website;
+    }
+}
+
+$errors = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $first_name = $_POST["first-name"];
-    $last_name = $_POST["last-name"];
-    $father_name = $_POST["father-name"];
-    $mother_name = $_POST["mother-name"];
+    $first_name = validateField("first-name", "Required field");
+    $last_name = validateField("last-name", "Required field");
+    $father_name = validateField("father-name", "Required field");
+    $mother_name = validateField("mother-name", "Required field");
+    $user_name = validateField("user-name", "Required field");
     $blood_group = $_POST["blood-group"];
     $religion = $_POST["religion"];
-    $email = $_POST["email"];
     $phone = $_POST["phone"];
-    $website = $_POST["website"];
     $gender = $_POST["gender"];
     $country = $_POST["country"];
     $city = $_POST["city"];
     $address = $_POST["message"];
     $postcode = $_POST["postcode"];
-    $user_name = $_POST["user-name"];
-    $password = $_POST["password"];
-    $confirm_password = $_POST["confirm-password"];
-}
 
+    $email = validateEmail("email", "Email is a required field");
+    $website = validateWebsite("website", "Website is a required field");
+
+    
+}
 echo '<table>
 <tr>
     <td>
@@ -86,22 +131,12 @@ echo '<table>
                     </tr>
                     <tr>
                     <tr>
-                    <th> <label for="blood-group"> Blood Group<label</th>
-                    <td>:</td>
-                    <td>
-                        <select id="blood-group" name="blood-group"  >
-                            <option  value=""'    . ($blood_group == "" ? "selected" : "disabled") . '>Select Blood Group </option>
-                            <option value="A+" ' . ($blood_group == "A+" ? "selected" : "disabled") . '>A+</option>
-                            <option value="A-" ' . ($blood_group == "A-" ? "selected" : "disabled") . '>A-</option>
-                            <option value="B+" ' . ($blood_group == "B+" ? "selected" : "disabled") . '>B+</option>
-                            <option value="B-" ' . ($blood_group == "B-" ? "selected" : "disabled") . '>B-</option>
-                            <option value="AB+" ' . ($blood_group == "AB+" ? "selected" : "disabled") . '>AB+</option>
-                            <option value="AB-" ' . ($blood_group == "AB-" ? "selected" : "disabled") . '>AB-</option>
-                            <option value="O+" ' . ($blood_group == "O+" ? "selected" : "disabled") . '>O+</option>
-                            <option value="O-" ' . ($blood_group == "O-" ? "selected" : "disabled") . '>O-</option>
-                        </select>
-                    </td>
-                </tr>
+                        <th><label for="blood-group">Blood Group</label></th>
+                        <td>:</td>
+                        <td>
+                            <input type="text" id="blood-group" name="blood-group" value=" ' .$blood_group. '" readonly>
+                        </td>
+                    </tr>
                 
                     <tr><td><br></td></tr>
                                                 
@@ -109,12 +144,7 @@ echo '<table>
                         <th> <label for="religion"> Religion <label</th>
                         <td>:</td>
                         <td>
-                            <select id="religion" name="religion"  >
-                                <option value=""   '   . ($religion == "" ? "selected" : "disabled") . ' >Please select religion</option>
-                                <option value="Islam" ' . ($religion == "Islam" ? "selected" : "disabled") . '>Islam</option>
-                                <option value="Hinduism" ' . ($religion == "Hinduism" ? "selected" : "disabled") . '>Hinduism</option>
-                                <option value="Other" ' . ($religion == "Other" ? "selected" : "disabled") . '>Other</option>
-                            </select>
+                        <input type="text" id="religion" name="religion" value=" ' .$religion. '" readonly>
                         </td>
                     </tr>
                     <tr>
@@ -153,8 +183,10 @@ echo '<table>
 
                     <tr>
                         <th><label for="website"> Website</label></th>
-                        <td>:</td>
-                        <td><input type="url" id="website" readonly value="' . $website . '"></td>
+                       <td>:</td>
+                    <td><input type="url" id="website" readonly value="' . $website . '">
+                    </td>
+
                     </tr>
                     <tr>
                         <td><br></td>
@@ -166,21 +198,9 @@ echo '<table>
                         <td>
                             <fieldset>
                                 <legend>Present Address</legend>
-                                <select id="country" name="country" >
-                                <option value="Bangladesh"' . ($country == "Bangladesh" ? " selected" : "disabled") . '>Bangladesh</option>
-                                <option value="Canada"' . ($country == "Canada" ? " selected" : "disabled") . '>Canada</option>
-                                <option value="India"' . ($country == "India" ? " selected" : "disabled") . '>India</option>
-                                <option value="Pakistan"' . ($country == "Pakistan" ? " selected" : "disabled") . '>Pakistan</option>
-                                <option value="United States of America"' . ($country == "United States of America" ? " selected" : "disabled") . '>United States of America</option>
-                                <option value="Others"' . ($country == "Others" ? " selected" : "disabled") . '>Others</option>
-                            </select>
-                            <select id="city" name="city"  >
-                            <option value="Dhaka" ' . ($city == "Dhaka" ? "selected" : "disabled") .'>Dhaka</option>
-                            <option value="Dinajpur" ' . ($city =="Dinajpur" ? "selected" : "disabled") .'>Dinajpur</option>
-                            <option value="Potuakhali" ' . ($city=="Potuakhali" ? "selected" : "disabled").'>Potuakhali</option>
-                            <option value="Rajshahi" '. ($city=="Rajshahi"  ? "selected" : "disabled").'>Rajshahi</option>
-                            <option value="Others" '.($city=="Others" ? "selected" : "disabled").'>Others</option>
-                        </select><br>
+                                <input type="text"  name="country" value=" ' .$country. '" readonly>
+                                <input type="text"  name="city" value=" ' .$city. '" readonly>
+                          <br>
                                 <textarea name="message" rows="6" cols="30" readonly>' . $address . '</textarea>
                                 <input type="text" readonly value="' . $postcode . '">
                             </fieldset>
