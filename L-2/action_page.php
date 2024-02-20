@@ -1,12 +1,26 @@
 <?php
 
 
-$user_name = $password = $confirm_password = $gender = $first_name = $last_name = $father_name = $mother_name = $blood_group = $religion = $email = $phone = $website = $country = $city = $address = $postcode = "";
+$user_name = $password = $confirm_password  = $first_name = $last_name = $father_name = $mother_name = $blood_group = $religion = $email = $phone = $website = $country = $city = $address = $postcode = "";
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
+}
+
+function validatePassword($password, $confirm_password) {
+    $password = test_input($_POST["password"]);
+    $confirm_password = test_input($_POST["confirm-password"]);
+    
+    if (empty($password)) {
+        return "Password is a required field";
+    } elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/", $password)) {
+        return "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 digit, and 1 special character";
+    } elseif ($password !== $confirm_password) {
+        return "Confirm password does not match";
+    }
+    return $password;
 }
 
 function validateField($fieldName, $errorMessage) {
@@ -15,7 +29,7 @@ function validateField($fieldName, $errorMessage) {
     } else {
         $field = test_input($_POST[$fieldName]);
         if (!preg_match("/^[a-zA-Z-' ]*$/", $field)) {
-            return "Only letters and white space allowed for " . $errorMessage;
+            return "Only letters and white space allowed for " . $fieldName;
         }
         return $field;
     }
@@ -45,28 +59,54 @@ function validateWebsite($fieldName, $errorMessage) {
     }
 }
 
-$errors = [];
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $first_name = validateField("first-name", "Required field");
-    $last_name = validateField("last-name", "Required field");
-    $father_name = validateField("father-name", "Required field");
-    $mother_name = validateField("mother-name", "Required field");
-    $user_name = validateField("user-name", "Required field");
-    $blood_group = $_POST["blood-group"];
-    $religion = $_POST["religion"];
-    $phone = $_POST["phone"];
-    $gender = $_POST["gender"];
-    $country = $_POST["country"];
-    $city = $_POST["city"];
-    $address = $_POST["message"];
-    $postcode = $_POST["postcode"];
-
-    $email = validateEmail("email", "Email is a required field");
-    $website = validateWebsite("website", "Website is a required field");
-
+function validateRadioButton($fieldName, $errorMessage) {
+    if (empty($_POST[$fieldName])) {
+        return $errorMessage; 
+    } else {
+        $gender = test_input($_POST[$fieldName]);
+        return $gender; 
+    }
+}
+function validatePhone($fieldName, $errorMessage) {
+    if (empty($_POST[$fieldName])) {
+        return $errorMessage;
+    } else {
+        $phone = test_input($_POST[$fieldName]);
+        if (!preg_match("/^(\+880)(\d){10}$/", $phone)) {
+            return "Invalid phone number format";
+        }
+        return $phone;
+    }
     
 }
+    
+$errorMessage = "";
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $password = validatePassword($password, $confirm_password);
+    $email = validateEmail("email", "Email is a required field");
+    $website = validateWebsite("website", "Website is a required field");
+    $first_name = validateField("first-name", "Required field");
+    $last_name = validateField("last-name", "Last name is empty");
+    $father_name = validateField("father-name", "Father name is empty");
+    $mother_name = validateField("mother-name", "Mother name is empty");
+    $user_name = validateField("user-name", "User name is empty");
+    $postcode = validateField("postcode", "Required field");
+    $phone = validatePhone("phone", "Phone is empty");
+    $gender = validateRadioButton("gender", "Gender is empty"); 
+    if ($gender == "Gender is empty") {
+        $errorMessage = $gender;
+        $gender = "";
+    }
+    $address = validateField("message","Address is empty");
+    $blood_group = $_POST["blood-group"];
+    $religion = $_POST["religion"];
+    $country = $_POST["country"];
+    $city=$_POST["city"];
+   
+}
+
 echo '<table>
 <tr>
     <td>
@@ -105,7 +145,11 @@ echo '<table>
                         <label for="male">Male</label>
                         <input type="radio" value="Female" id="female" ' . ($gender == "Female" ? "checked" : "disabled") . '>
                         <label for="female">Female</label>
+                        <br>
+                        <span>' . $errorMessage. '</span>
+
                     </td>
+                   
                 </tr>
                 
                 
@@ -231,7 +275,7 @@ echo '<table>
                         <th><label for="password">Password</label></th>
                         <td>:</td>
                         <td>
-                            <input type="password" id="password"  readonly value="' . $password . '" >
+                            <input type="text" id="password"  readonly value="' . $password . '" >
                         </td>
                     </tr>
                     <tr>
