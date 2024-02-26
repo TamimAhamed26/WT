@@ -1,7 +1,8 @@
 <?php
-
+session_start(); 
 
 $user_name = $password = $confirm_password  = $first_name = $last_name = $father_name = $mother_name = $blood_group = $religion = $email = $phone = $website = $country = $city = $address = $postcode = "";
+
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -14,99 +15,100 @@ function validatePassword($password, $confirm_password) {
     $confirm_password = test_input($_POST["confirm-password"]);
     
     if (empty($password)) {
-        return "Password is a required field";
+        $_SESSION['password_error'] = "Password is a required field";
     } elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/", $password)) {
-        return "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 digit, and 1 special character";
+        $_SESSION['password_error'] = "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 digit, and 1 special character";
     } elseif ($password !== $confirm_password) {
-        return "Confirm password does not match";
+        $_SESSION['password_error'] = "Confirm password does not match";
     }
     return $password;
 }
 
 function validateField($fieldName, $errorMessage) {
     if (empty($_POST[$fieldName])) {
-        return $errorMessage;
+        $_SESSION[$fieldName . '_error'] = $errorMessage;
     } else {
         $field = test_input($_POST[$fieldName]);
         if (!preg_match("/^[a-zA-Z-' ]*$/", $field)) {
-            return "Only letters and white space allowed for " . $fieldName;
+            $_SESSION[$fieldName . '_error'] = "Only letters and white space allowed for " . $fieldName;
+        } else {
+            return $field;
         }
-        return $field;
     }
 }
 
 function validateEmail($fieldName, $errorMessage) {
     if (empty($_POST[$fieldName])) {
-        return $errorMessage;
+        $_SESSION[$fieldName . '_error'] = $errorMessage;
     } else {
         $email = test_input($_POST[$fieldName]);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return "Invalid email format";
+            $_SESSION[$fieldName . '_error'] = "Invalid email format";
+        } else {
+            return $email;
         }
-        return $email;
     }
 }
 
 function validateWebsite($fieldName, $errorMessage) {
     if (empty($_POST[$fieldName])) {
-        return $errorMessage;
+        $_SESSION[$fieldName . '_error'] = $errorMessage;
     } else {
         $website = test_input($_POST[$fieldName]);
         if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $website)) {
-            return "Invalid URL";
+            $_SESSION[$fieldName . '_error'] = "Invalid URL";
+        } else {
+            return $website;
         }
-        return $website;
     }
 }
 
 function validateRadioButton($fieldName, $errorMessage) {
     if (empty($_POST[$fieldName])) {
-        return $errorMessage; 
+        $_SESSION[$fieldName . '_error'] = $errorMessage;
     } else {
         $gender = test_input($_POST[$fieldName]);
         return $gender; 
     }
 }
+
 function validatePhone($fieldName, $errorMessage) {
     if (empty($_POST[$fieldName])) {
-        return $errorMessage;
+        $_SESSION[$fieldName . '_error'] = $errorMessage;
     } else {
         $phone = test_input($_POST[$fieldName]);
         if (!preg_match("/^(\+880)(\d){10}$/", $phone)) {
-            return "Invalid phone number format";
+            $_SESSION[$fieldName . '_error'] = "Invalid phone number format";
+        } else {
+            return $phone;
         }
-        return $phone;
     }
-    
 }
-    
-$errorMessage = "";
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = validatePassword($password, $confirm_password);
     $email = validateEmail("email", "Email is a required field");
     $website = validateWebsite("website", "Website is a required field");
-    $first_name = validateField("first-name", "Required field");
+    $first_name = validateField("first-name", "First name is empty");
     $last_name = validateField("last-name", "Last name is empty");
     $father_name = validateField("father-name", "Father name is empty");
     $mother_name = validateField("mother-name", "Mother name is empty");
     $user_name = validateField("user-name", "User name is empty");
-    $postcode = validateField("postcode", "Required field");
+    $postcode = validateField("postcode", "Postcode is empty");
     $phone = validatePhone("phone", "Phone is empty");
     $gender = validateRadioButton("gender", "Gender is empty"); 
-    if ($gender == "Gender is empty") {
-        $errorMessage = $gender;
-        $gender = "";
-    }
     $address = validateField("message","Address is empty");
     $blood_group = $_POST["blood-group"];
     $religion = $_POST["religion"];
     $country = $_POST["country"];
     $city=$_POST["city"];
-   
 }
 
+if (!empty($_SESSION)) {
+    // Redirect to l-2.php if there are errors
+    header("Location: l-2.php");
+    exit(); 
+}
 echo '<table>
 <tr>
     <td>
@@ -146,7 +148,7 @@ echo '<table>
                         <input type="radio" value="Female" id="female" ' . ($gender == "Female" ? "checked" : "disabled") . '>
                         <label for="female">Female</label>
                         <br>
-                        <span>' . $errorMessage. '</span>
+                   
 
                     </td>
                    
@@ -299,4 +301,7 @@ echo '<table>
         </td>   
     </tr>
 </table>';
+
+
+
 ?>

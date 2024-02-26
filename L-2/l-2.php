@@ -1,4 +1,55 @@
 <?php
+session_start(); 
+
+$errorMessages = array(
+    'first-name' => '',
+    'last-name' => '',
+    'father-name' => '',
+    'mother-name' => '',
+    'message' => '',
+    'postcode' => '',
+    'user-name' => '',
+   
+);
+
+if (isset($_SESSION['password_error'])) {
+    $errorMessages['password'] = $_SESSION['password_error'];
+    unset($_SESSION['password_error']);
+}
+
+if (isset($_SESSION['email_error'])) {
+    $errorMessages['email'] = $_SESSION['email_error'];
+    unset($_SESSION['email_error']);
+}
+
+if (isset($_SESSION['website_error'])) {
+    $errorMessages['website'] = $_SESSION['website_error'];
+    unset($_SESSION['website_error']);
+}
+
+if (isset($_SESSION['phone_error'])) {
+    $errorMessages['phone'] = $_SESSION['phone_error'];
+    unset($_SESSION['phone_error']);
+}
+
+if (isset($_SESSION['gender_error'])) {
+    $errorMessages['gender'] = $_SESSION['gender_error'];
+    unset($_SESSION['gender_error']);
+}
+
+foreach ($errorMessages as $fieldName => $errorMessage) {
+    if (isset($_SESSION[$fieldName . '_error'])) {
+        $errorMessages[$fieldName] = $_SESSION[$fieldName . '_error'];
+        unset($_SESSION[$fieldName . '_error']);
+    }
+}
+
+function echoErrorMessage($fieldName) {
+    global $errorMessages;
+    if (isset($errorMessages[$fieldName])) {
+        echo '<span>' . $errorMessages[$fieldName] . '</span>';
+    }
+}
 ?>
 <html>
 <head>
@@ -23,6 +74,7 @@
                                 <td>:</td>
                                 <td>
                                     <input type="text" id="first-name" name="first-name" >
+                                  <?php echoErrorMessage('first-name'); ?>
                                 </td>
                             </tr>
                              <tr>
@@ -31,7 +83,11 @@
                             <tr>
                                 <th><label for="last-name"> Last Name</label></th>
                                         <td>:</td>
-                                        <td><input type="text" id="last-name" name="last-name" ></td>
+                                        <td><input type="text" id="last-name" name="last-name" >
+                                        <?php echoErrorMessage('last-name'); ?>
+                                    </td>
+                                   
+
                             </tr>
                             <tr>
                                 <td><br></td>
@@ -45,6 +101,9 @@
                                     <label for="male">Male</label>
                                     <input type="radio" id="female" name="gender" value="Female">
                                     <label for="female"> Female</label>
+                                    <?php echoErrorMessage("gender")?>
+                                   
+
                                 </td>
                             </tr>
                             <tr>
@@ -53,7 +112,11 @@
                             <tr>
                                 <th><label for="father-name"> Father's Name</label></th>
                                 <td>:</td>
-                                <td><input type="text" id="father-name" name="father-name"></td>
+                                <td><input type="text" id="father-name" name="father-name">
+                                <?php echoErrorMessage('father-name'); ?>
+                            </td>
+                              
+                                
                                 </tr>
                                 <tr>
                                      <td><br></td>
@@ -62,7 +125,10 @@
                                 <tr>
                                     <th><label for="mother-name"> Mother's Name</label></th>
                                     <td>:</td>
-                                    <td><input type="text" id="mother-name" name="mother-name"></td>
+                                    <td><input type="text" id="mother-name" name="mother-name">
+                                    <?php echoErrorMessage('mother-name'); ?>
+                                </td>
+                                    
                                
                                 </tr>
                                 <tr>
@@ -119,7 +185,10 @@
                                                             <tr>
                                                                 <th><label for="email"> Email</label></th>
                                                                 <td>:</td>
-                                                                <td><input type="email" id="email" name="email" placeholder="example@example.com"></td>
+                                                                <td><input type="email" id="email" name="email" placeholder="example@example.com">
+                                                               <?php echoErrorMessage('email') ?>
+                                                                </td>
+                                                            </td>
                                                             </tr>
                                                             <tr>
                                                                 <td><br></td>
@@ -128,7 +197,9 @@
                                                             <tr>
                                                                 <th><label for="phone">Phone/Email</label></th>
                                                                 <td>:</td>
-                                                                <td><input type="tel" id="phone" name="phone"></td>
+                                                                <td><input type="tel" id="phone" name="phone">
+                                                                <?php echoErrorMessage('phone') ?>                                                           
+                                                            </td>
                                                             </tr>
                                                             <tr>
                                                                 <td><br></td>
@@ -137,7 +208,10 @@
                                                             <tr>
                                                                 <th><label for="website"> Website</label></th>
                                                                 <td>:</td>
-                                                                <td><input type="url" id="website" name="website" placeholder="http://www.example.com"></td>
+                                                                <td><input type="url" id="website" name="website" placeholder="http://www.example.com">
+                                                                <?php echoErrorMessage('website') ?>  
+                                                            
+                                                            </td>
                                                             </tr>
                                                             <tr>
                                                                 <td><br></td>
@@ -165,7 +239,9 @@
                                                                             <option value="Others">Others</option>
                                                                         </select><br>
                                                                         <textarea name="message" rows="6" cols="30" placeholder="Road/Street/City"></textarea>
-                                                                        <input type="text" id="postcode" name="postcode" placeholder="Post Code">
+                                                                        <?php echoErrorMessage('message') ?>
+                                                                        <input type="text" id="postcode" name="postcode" placeholder="Post Code"><?php echoErrorMessage('postcode') ?>
+                                                                        
                                                                     </fieldset>
                                                                 </td>
                                                             </tr>
@@ -186,6 +262,7 @@
                                                                 <td>:</td>
                                                                 <td>
                                                                     <input type="text" id="user-name" name="user-name">
+                                                                    <?php echoErrorMessage('user-name') ?>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -207,6 +284,7 @@
                                                                 <td>:</td>
                                                                 <td>
                                                                     <input type="password" id="confirm-password" name="confirm-password">
+                                                                    <?php echoErrorMessage('password') ?>
 
                                                                 </td>
 
