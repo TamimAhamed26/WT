@@ -36,6 +36,31 @@ function validateField($fieldName, $errorMessage) {
         }
     }
 }
+function validateAddressField($fieldName, $errorMessage) {
+    if (empty($_POST[$fieldName])) {
+        $_SESSION[$fieldName . '_error'] = $errorMessage;
+    } else {
+        $field = test_input($_POST[$fieldName]);
+        if (!preg_match("/^[a-zA-Z0-9\s,\-\/\.'#]*$/", $field)) {
+            $_SESSION[$fieldName . '_error'] = "invalid format " . $fieldName;
+        } else {
+            return $field;
+        }
+    }
+}
+
+function validatePostField($fieldName, $errorMessage) {
+    if (empty($_POST[$fieldName])) {
+        $_SESSION[$fieldName . '_error'] = $errorMessage;
+    } else {
+        $field = test_input($_POST[$fieldName]);
+        if (!preg_match("/^[0-9]*$/", $field)) {
+            $_SESSION[$fieldName . '_error'] = "Only Numbers are allowed for " . $fieldName;
+        } else {
+            return $field;
+        }
+    }
+}
 
 function validateEmail($fieldName, $errorMessage) {
     if (empty($_POST[$fieldName])) {
@@ -67,8 +92,8 @@ function validateRadioButton($fieldName, $errorMessage) {
     if (empty($_POST[$fieldName])) {
         $_SESSION[$fieldName . '_error'] = $errorMessage;
     } else {
-        $gender = test_input($_POST[$fieldName]);
-        return $gender; 
+        $field = test_input($_POST[$fieldName]);
+        return $field; 
     }
 }
 
@@ -85,6 +110,17 @@ function validatePhone($fieldName, $errorMessage) {
     }
 }
 
+function validateSelect($fieldName, $errorMessage) {
+    if (empty($_POST[$fieldName])) {
+        $_SESSION[$fieldName . '_error'] = $errorMessage;
+    } else {
+        $field = test_input($_POST[$fieldName]);
+        return $field; 
+    }
+}
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = validatePassword($password, $confirm_password);
     $email = validateEmail("email", "Email is a required field");
@@ -94,18 +130,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $father_name = validateField("father-name", "Father name is empty");
     $mother_name = validateField("mother-name", "Mother name is empty");
     $user_name = validateField("user-name", "User name is empty");
-    $postcode = validateField("postcode", "Postcode is empty");
+    $postcode = validatePostField("postcode", "Postcode is empty");
     $phone = validatePhone("phone", "Phone is empty");
     $gender = validateRadioButton("gender", "Gender is empty"); 
-    $address = validateField("message","Address is empty");
-    $blood_group = $_POST["blood-group"];
-    $religion = $_POST["religion"];
-    $country = $_POST["country"];
-    $city=$_POST["city"];
-}
+    $address = validateAddressField("message","Address is empty");
+    $blood_group = validateSelect("blood-group", "Please select a blood group");
+    $religion = validateSelect("religion", "Please select a religion");
+    $country = validateSelect("country", "Please select a country");
+    $city= validateSelect("city", "Please select a city");
 
+}
 if (!empty($_SESSION)) {
-    // Redirect to l-2.php if there are errors
+  
     header("Location: l-2.php");
     exit(); 
 }
@@ -277,7 +313,7 @@ echo '<table>
                         <th><label for="password">Password</label></th>
                         <td>:</td>
                         <td>
-                            <input type="text" id="password"  readonly value="' . $password . '" >
+                            <input type="password" id="password"  readonly value="' . $password . '" >
                         </td>
                     </tr>
                     <tr>

@@ -1,7 +1,7 @@
 <?php
 session_start(); 
 
-$errorMessages = array(
+$fieldNames = array(
     'first-name' => '',
     'last-name' => '',
     'father-name' => '',
@@ -9,55 +9,42 @@ $errorMessages = array(
     'message' => '',
     'postcode' => '',
     'user-name' => '',
-   
+    'password' => '',
+    'email' => '',
+    'website' => '',
+    'phone'=>'',
+    'gender'=>'',
+    'blood-group'=>'',
+    'religion'=>'',
+    'city'=>'',
+    'country'=>'',
+     
 );
 
-if (isset($_SESSION['password_error'])) {
-    $errorMessages['password'] = $_SESSION['password_error'];
-    unset($_SESSION['password_error']);
-}
-
-if (isset($_SESSION['email_error'])) {
-    $errorMessages['email'] = $_SESSION['email_error'];
-    unset($_SESSION['email_error']);
-}
-
-if (isset($_SESSION['website_error'])) {
-    $errorMessages['website'] = $_SESSION['website_error'];
-    unset($_SESSION['website_error']);
-}
-
-if (isset($_SESSION['phone_error'])) {
-    $errorMessages['phone'] = $_SESSION['phone_error'];
-    unset($_SESSION['phone_error']);
-}
-
-if (isset($_SESSION['gender_error'])) {
-    $errorMessages['gender'] = $_SESSION['gender_error'];
-    unset($_SESSION['gender_error']);
-}
-
-foreach ($errorMessages as $fieldName => $errorMessage) {
+foreach ($fieldNames as $fieldName => $value) {
     if (isset($_SESSION[$fieldName . '_error'])) {
-        $errorMessages[$fieldName] = $_SESSION[$fieldName . '_error'];
+        $fieldNames[$fieldName] = $_SESSION[$fieldName . '_error'];
         unset($_SESSION[$fieldName . '_error']);
     }
+      
 }
 
 function echoErrorMessage($fieldName) {
-    global $errorMessages;
-    if (isset($errorMessages[$fieldName])) {
-        echo '<span>' . $errorMessages[$fieldName] . '</span>';
+    global $fieldNames;
+    if (($fieldNames[$fieldName])) {
+        echo $fieldNames[$fieldName];
     }
 }
+
 ?>
+
 <html>
 <head>
     <title>Profile</title>
 </head>
 <body>
     <h1>Profile</h1>
-    <form action="action_page.php" autocomplete="off" method="post" novalidate target="_blank">
+    <form action="action_page.php" autocomplete="off" method="post" novalidate target="_self">
 
         <table>
             <tr>
@@ -94,9 +81,9 @@ function echoErrorMessage($fieldName) {
                             </tr>
 
                             <tr>
-                                <th>Gender</th>
-                                    <td>:</td>
-                               <td>
+                            <th>Gender</th>
+                            <td>:</td>
+                            <td>
                                     <input type="radio" name="gender" value="Male" id="male">
                                     <label for="male">Male</label>
                                     <input type="radio" id="female" name="gender" value="Female">
@@ -105,14 +92,14 @@ function echoErrorMessage($fieldName) {
                                    
 
                                 </td>
-                            </tr>
+
                             <tr>
                                 <td><br></td>
                             </tr>
                             <tr>
                                 <th><label for="father-name"> Father's Name</label></th>
                                 <td>:</td>
-                                <td><input type="text" id="father-name" name="father-name">
+                                <td><input type="text" id="father-name" name="father-name"  >
                                 <?php echoErrorMessage('father-name'); ?>
                             </td>
                               
@@ -125,7 +112,7 @@ function echoErrorMessage($fieldName) {
                                 <tr>
                                     <th><label for="mother-name"> Mother's Name</label></th>
                                     <td>:</td>
-                                    <td><input type="text" id="mother-name" name="mother-name">
+                                    <td><input type="text" id="mother-name" name="mother-name" >
                                     <?php echoErrorMessage('mother-name'); ?>
                                 </td>
                                     
@@ -139,7 +126,7 @@ function echoErrorMessage($fieldName) {
                                     <td>:</td>
                                 <td>
                                 <select id="blood-group" name="blood-group">
-                                                                        <option value="">Select Blood Group</option>
+                                                                        <option value="">Select Blood Group</option> 
                                                                         <option value="A+">A+</option>
                                                                         <option value="A-">A-</option>
                                                                         <option value="B+">B+</option>
@@ -149,6 +136,8 @@ function echoErrorMessage($fieldName) {
                                                                         <option value="O+">O+</option>
                                                                         <option value="O-">O-</option>
                                 </select>
+                                <?php echoErrorMessage('blood-group') ?>
+                                
                                  </td>
                                 </tr>
                                 <tr><td><br></td></tr>
@@ -164,6 +153,7 @@ function echoErrorMessage($fieldName) {
                                                                         <option value="Other">Other</option>
 
                                         </select>
+                                        <?php echoErrorMessage('religion') ?>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -185,7 +175,7 @@ function echoErrorMessage($fieldName) {
                                                             <tr>
                                                                 <th><label for="email"> Email</label></th>
                                                                 <td>:</td>
-                                                                <td><input type="email" id="email" name="email" placeholder="example@example.com">
+                                                                <td><input type="email" id="email" name="email" placeholder="example@example.com" >
                                                                <?php echoErrorMessage('email') ?>
                                                                 </td>
                                                             </td>
@@ -197,7 +187,7 @@ function echoErrorMessage($fieldName) {
                                                             <tr>
                                                                 <th><label for="phone">Phone/Email</label></th>
                                                                 <td>:</td>
-                                                                <td><input type="tel" id="phone" name="phone">
+                                                                <td><input type="tel" id="phone" name="phone" placeholder="+880..">
                                                                 <?php echoErrorMessage('phone') ?>                                                           
                                                             </td>
                                                             </tr>
@@ -224,6 +214,7 @@ function echoErrorMessage($fieldName) {
                                                                     <fieldset>
                                                                         <legend>Present Address</legend>
                                                                         <select id="country" name="country">
+                                                                            <option value="">Select a country</option>
                                                                             <option value="Bangladesh">Bangladesh</option>
                                                                             <option value="Canada">Canada</option>
                                                                             <option value="India">India</option>
@@ -231,13 +222,19 @@ function echoErrorMessage($fieldName) {
                                                                             <option value="United States of America">United States of America</option>
                                                                             <option value="Others">Others</option>
                                                                         </select>
+                                                                        <?php echoErrorMessage('country') ?>  
                                                                         <select id="city" name="city">
+                                                                            <option value="">Select a City</option>
                                                                             <option value="Dhaka">Dhaka</option>
                                                                             <option value="Dinajpur">Dinajpur</option>
                                                                             <option value="Potuakhali">Potuakhali</option>
                                                                             <option value="Rajshahi">Rajshahi</option>
-                                                                            <option value="Others">Others</option>
-                                                                        </select><br>
+                                                                            <option value="Others">Others</option>                                          
+                                                                        </select>
+                                                                        <?php echoErrorMessage('city') ?>  
+                                                                    
+
+                                                                       <br>
                                                                         <textarea name="message" rows="6" cols="30" placeholder="Road/Street/City"></textarea>
                                                                         <?php echoErrorMessage('message') ?>
                                                                         <input type="text" id="postcode" name="postcode" placeholder="Post Code"><?php echoErrorMessage('postcode') ?>
@@ -294,6 +291,8 @@ function echoErrorMessage($fieldName) {
                                                     </fieldset>
 
                                                     <input type="submit" value="Register">
+                                                    <input type="submit" name="save_draft" value="Save as Draft">
+                                                    
                                                 </td>
 
 
