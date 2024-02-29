@@ -121,6 +121,8 @@ function validateSelect($fieldName, $errorMessage) {
 
 
 
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = validatePassword($password, $confirm_password);
     $email = validateEmail("email", "Email is a required field");
@@ -138,6 +140,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $religion = validateSelect("religion", "Please select a religion");
     $country = validateSelect("country", "Please select a country");
     $city= validateSelect("city", "Please select a city");
+setcookie("first-name", $first_name, time() + (86400 * 30), "/");
+setcookie("last-name", $last_name, time() + (86400 * 30), "/");
+setcookie("email", $email, time() + (86400 * 30), "/");
+setcookie("phone", $phone, time() + (86400 * 30), "/");
+setcookie("website", $website, time() + (86400 * 30), "/");
+setcookie("message", $address, time() + (86400 * 30), "/");
+setcookie("postcode", $postcode, time() + (86400 * 30), "/");
+setcookie("user-name", $user_name, time() + (86400 * 30), "/");
+setcookie("gender", $gender, time() + (86400 * 30), "/");
+setcookie("father-name", $father_name, time() + (86400 * 30), "/");
+setcookie("mother-name", $mother_name, time() + (86400 * 30), "/");
+setcookie("blood-group", $blood_group, time() + (86400 * 30), "/");
+setcookie("religion", $religion, time() + (86400 * 30), "/");
+setcookie("country", $country, time() + (86400 * 30), "/");
+setcookie("city", $city, time() + (86400 * 30), "/");
+
 
 }
 if (!empty($_SESSION)) {
@@ -323,7 +341,7 @@ echo '<table>
                         <th><label for="confirm-password">Confirm Password</label></th>
                         <td>:</td>
                         <td>
-                            <input type="password" id="confirm-password" readonly value="' . $confirm_password . '" >
+                            <input type="password" id="confirm-password" readonly value="' . $password . '" >
                         </td>
                     </tr>
                     <tr>
