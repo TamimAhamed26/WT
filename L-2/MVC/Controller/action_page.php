@@ -160,7 +160,7 @@ setcookie("city", $city, time() + (86400 * 30), "/");
 }
 if (!empty($_SESSION)) {
   
-    header("Location: l-2.php");
+    header("Location: ../Views/l-2.php");
     exit(); 
 }
 echo '<table>

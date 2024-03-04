@@ -59,7 +59,7 @@ function echoErrorMessage($fieldName) {
 </head>
 <body>
     <h1>Profile</h1>
-    <form action="action_page.php" autocomplete="off" method="post" novalidate target="_self">
+    <form action="../Controller/action_page.php" autocomplete="off" method="post" novalidate target="_self">
 
         <table>
             <tr>
@@ -173,7 +173,10 @@ function echoErrorMessage($fieldName) {
                                                             </tr>
 
                                                         </table>
+                                                       
                                                     </fieldset>
+                                                    <input type="submit" value="Register">
+                                                    <input type="submit" name="save_draft" value="Save as Draft">
                                                 </td>
                                             
                                                 <td>
@@ -257,6 +260,8 @@ function echoErrorMessage($fieldName) {
                                                             </tr>
                                                         </table>
                                                     </fieldset>
+                                               
+                                                    
                                                  </td>
                                    
                                                 <td>
