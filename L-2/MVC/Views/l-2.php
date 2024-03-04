@@ -1,5 +1,8 @@
 <?php
+
 session_start(); 
+
+
 
 $fieldNames = array(
     'first-name' => '',
@@ -60,6 +63,15 @@ function echoErrorMessage($fieldName) {
 <body>
     <h1>Profile</h1>
     <form action="../Controller/action_page.php" autocomplete="off" method="post" novalidate target="_self">
+
+    <h3><b>Last Modified on: </b>
+    <?php
+    if (isset($_COOKIE['last_modified'])) {
+        echo $_COOKIE['last_modified'];
+    } else {
+        echo ""; // Default message if the cookie is not set
+    }
+    ?>
 
         <table>
             <tr>
@@ -175,7 +187,7 @@ function echoErrorMessage($fieldName) {
                                                         </table>
                                                        
                                                     </fieldset>
-                                                    <input type="submit" value="Register">
+                                                    <input type="submit" name="register" value="Register">
                                                     <input type="submit" name="save_draft" value="Save as Draft">
                                                 </td>
                                             
@@ -308,8 +320,7 @@ function echoErrorMessage($fieldName) {
                                                         </table>
                                                     </fieldset>
 
-                                                    <input type="submit" value="Register">
-                                                    <input type="submit" name="save_draft" value="Save as Draft">
+                                                   
                                                     
                                                 </td>
 
