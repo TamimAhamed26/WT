@@ -1,5 +1,8 @@
 <?php
-session_start(); 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 $user_name = $password = $confirm_password  = $first_name = $last_name = $father_name = $mother_name = $blood_group = $religion = $email = $phone = $website = $country = $city = $address = $postcode = "";
 

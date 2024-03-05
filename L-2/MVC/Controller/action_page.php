@@ -1,21 +1,14 @@
 <?php
-session_start(); 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once 'validation_functions.php';
+require_once 'cookie_controller.php';
 
 $user_name = $password = $confirm_password = $first_name = $last_name = $father_name = $mother_name = $blood_group = $religion = $email = $phone = $website = $country = $city = $address = $postcode = "";
 
 
-if (isset($_POST['save_draft'])) {
-    foreach ($_POST as $key => $value) {
-        setcookie($key, test_input($value), time() + (86400 * 30), "/");
-    }
- //to local time
-    date_default_timezone_set('Asia/Dhaka');
-    setcookie('last_modified', date("Y-m-d H:i:s"), time() + (86400 * 30), "/");
-   
-    header("Location: ../Views/l-2.php");
-    exit();
-}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = validatePassword($password, $confirm_password);
@@ -35,36 +28,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $country = validateSelect("country", "Please select a country");
     $city = validateSelect("city", "Please select a city");
 
-    if (!empty($_SESSION)) {
-        header("Location: ../Views/l-2.php");
-        exit();
-}
-}
+    if (empty($_SESSION['first-name_error']) && 
+    empty($_SESSION['last-name_error']) && 
+    empty($_SESSION['father-name_error']) && 
+    empty($_SESSION['mother-name_error']) && 
+    empty($_SESSION['blood-group_error']) && 
+    empty($_SESSION['religion_error']) && 
+    empty($_SESSION['email_error']) && 
+    empty($_SESSION['phone_error']) && 
+    empty($_SESSION['website_error']) && 
+    empty($_SESSION['country_error']) && 
+    empty($_SESSION['city_error']) && 
+    empty($_SESSION['message_error']) && 
+    empty($_SESSION['postcode_error']) && 
+    empty($_SESSION['user-name_error']) && 
+    empty($_SESSION['gender_error']) &&
+    empty($_SESSION['password_error'])) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if (!empty($_SESSION)) {
+    header("Location: ../Views/Registration_page.php");
+    exit();
+} else {
+ 
+    $_SESSION['validated_values'] = [
+        'first-name' => $first_name,
+        'last-name' => $last_name,
+        'father-name' => $father_name,
+        'mother-name' => $mother_name,
+        'blood-group' => $blood_group,
+        'religion' => $religion,
+        'email' => $email,
+        'phone' => $phone,
+        'website' => $website,
+        'country' => $country,
+        'city' => $city,
+        'message' => $address,
+        'postcode' => $postcode,
+        'user-name' => $user_name,
+        'gender' => $gender,
+        'password' => $password
+    ];
+    
     header("Location: ../Views/l-2.php");
     exit();
+} 
 }
 ?>
