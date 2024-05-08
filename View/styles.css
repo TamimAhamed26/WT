@@ -1,0 +1,32 @@
+
+
+  .sidebar {
+    position: fixed;
+    top: 50px; 
+    left: 0;
+    width: 250px;
+    height: calc(100% - 50px); 
+    background-color: #333;
+    padding-top: 20px; 
+  }
+  
+  /* Styles for the sidebar links */
+  .sidebar a {
+    padding: 10px 15px;
+    display: block;
+    color: white;
+    text-decoration: none;
+  }
+  
+  /* Styles for the sidebar labels */
+  .sidebar .label {
+    color: #ccc;
+    padding: 10px 15px;
+    display: block;
+  }
+  
+  /* Styles for hover effect on sidebar links */
+  .sidebar a:hover {
+    background-color: #555;
+  }
+  

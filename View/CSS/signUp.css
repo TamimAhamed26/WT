@@ -1,0 +1,99 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  header {
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  header table {
+    margin:  auto;
+  }
+  
+  header a {
+    position: fixed;
+    right: 2;
+    color: #bf8787;
+    text-decoration: none;
+    top: 2;
+  }
+  
+  main {
+    padding-top: 140px; /*change padding */
+    padding-bottom: 20px;
+  }
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 1px; 
+    text-align: center;
+    position: fixed;
+    left: 0;
+    width: 100%;
+  }
+  
+  /* Signup page styles */
+  .signup-container {
+    background-color: #f9f3f3;
+    padding: 8px; /*change padding */
+    border-radius: 15px;
+    
+  }
+  
+  .signup-container h2 {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  
+  .signup-container label {
+    font-weight: bold;
+  }
+  
+  .signup-container input[type="text"],
+  .signup-container input[type="email"],
+  .signup-container input[type="password"],
+  .signup-container input[type="tel"],
+  .signup-container input[type="url"],
+  .signup-container select,
+  .signup-container textarea {
+    width: 100%;
+    padding: 5px; 
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+  }
+  
+  .signup-container input[type="radio"],
+  .signup-container input[type="checkbox"] {
+    margin-right: 5px;
+    color: #ccc;
+    
+  }
+  
+  .signup-container fieldset {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .signup-container fieldset legend {
+    font-weight: bold;
+    font-style:italic;
+     /* color: #e77c7c;*/
+  }
+  
+  .signup-container input[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
