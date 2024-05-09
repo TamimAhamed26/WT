@@ -446,10 +446,20 @@ function getTransactionById($transaction_id) {
 
 function updateTransactionStatus($transaction_id, $status) {
     $conn = getDatabaseConnection();
-    $sql = "UPDATE transactions SET status = '$status' WHERE transc_id = $transaction_id";
-    $success = mysqli_query($conn, $sql);
-    mysqli_close($conn);
-    return $success;
+    
+    $query = "UPDATE transactions SET status=? WHERE transc_id=?";
+    $statement = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($statement, "ss", $status, $transaction_id);
+    
+    if(mysqli_stmt_execute($statement)) {
+        mysqli_stmt_close($statement);
+        mysqli_close($conn);
+        return true; // Update successful
+    } else {
+        mysqli_stmt_close($statement);
+        mysqli_close($conn);
+        return false; // Update failed
+    }
 }
 
 
@@ -467,8 +477,66 @@ function updateEmployeeStatus($employeeId, $newStatus) {
         return false; // Update failed
     }
 }
+function generateReport($report_type) {
+    $conn = getDatabaseConnection();
 
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
+    // Initialize variables
+    $sql = "";
+    $table_html = '';
+
+    // Prepare SQL statement based on the selected report type
+    switch ($report_type) {
+        case "User Activities":
+            $sql = "SELECT * FROM customer_log";
+            break;
+        case "Account Balances":
+            $sql = "SELECT * FROM account_balances";
+            break;
+        case "Transaction Summaries":
+            $sql = "SELECT * FROM transactions";
+            break;
+        default:
+            $sql = ""; 
+    }
+
+    // Prepare and execute the SQL statement with a prepared statement
+    if (!empty($sql)) {
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->get_result();
+
+        // Construct HTML table
+        if ($result->num_rows > 0) {
+            $table_html .= "<table>";
+            $table_html .= "<tr>";
+            foreach ($result->fetch_fields() as $field) {
+                $table_html .= "<th>" . $field->name . "</th>";
+            }
+            $table_html .= "</tr>";
+
+            while ($row = $result->fetch_assoc()) {
+                $table_html .= "<tr>";
+                foreach ($row as $value) {
+                    $table_html .= "<td>" . $value . "</td>";
+                }
+                $table_html .= "</tr>";
+            }
+            $table_html .= "</table>";
+        } else {
+            $table_html = "No data found.";
+        }
+    }
+
+    // Close connection
+    $conn->close();
+
+    return $table_html;
+}
 
 
 /*

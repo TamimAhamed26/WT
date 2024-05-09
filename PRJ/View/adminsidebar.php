@@ -26,7 +26,7 @@ DOCTYPE html>
         <a href="../View/modify_emp.php">Manage Employees</a>
         <a href="../View/transcation_monitoring.php">Transaction Monitoring</a>
         <a href="../View/access_control.php">Access control </a>
-        <a href="../View/addemp.php">Manage Employee ADD/DELETE</a>
+        <a href="../View/report_gen.php">Reports</a>
         <a href="../View/usermanage.php">Manage User</a>
         <span class="label">Website Management</span>
         <a href="../View/postnews.php">Post News</a>
