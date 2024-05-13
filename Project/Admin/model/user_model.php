@@ -480,12 +480,10 @@ function updateEmployeeStatus($employeeId, $newStatus) {
 function generateReport($report_type) {
     $conn = getDatabaseConnection();
 
-    // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Initialize variables
     $sql = "";
     $table_html = '';
 
@@ -503,14 +501,11 @@ function generateReport($report_type) {
         default:
             $sql = ""; 
     }
-
-    // Prepare and execute the SQL statement with a prepared statement
     if (!empty($sql)) {
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->get_result();
 
-        // Construct HTML table
         if ($result->num_rows > 0) {
             $table_html .= "<table>";
             $table_html .= "<tr>";
@@ -532,7 +527,7 @@ function generateReport($report_type) {
         }
     }
 
-    // Close connection
+  
     $conn->close();
 
     return $table_html;

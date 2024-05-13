@@ -1,0 +1,455 @@
+.welcome-message {
+    text-align: center; /* Center the text */
+    margin-top: 50px; /* Adjust top margin as needed */
+    font-size: 24px; /* Adjust font size as needed */
+    color: #1e2156; /* Adjust text color as needed */
+    font-style: italic;
+}
+
+.change-password-link {
+    display: inline-block;
+    margin-top: 50px; /* Adjust as needed */
+    margin-left: 0px; /* Adjust as needed */
+    color: #7e2613;
+    font-size: 28px;
+}
+
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+select {
+    padding: 10px;
+    border: 2px solid #1e2156;
+    border-radius: 15px; 
+    width: 250px;
+}
+
+/* Hide the default radio button */
+/* Hide the default radio button */
+input[type="radio"] {
+    display: none;
+}
+
+/* Style the label for the radio button */
+input[type="radio"] + label {
+    margin-right: 10px; /* Add some space between radio buttons */
+    display: inline-block;
+    padding: 8px 12px;
+    border: 2px solid #1e2156;
+    border-radius: 50%; /* Make it round */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Add transition for smooth effect */
+}
+
+/* Style the label for the radio button when it's checked */
+input[type="radio"]:checked + label {
+    background-color: #1e2156;
+    color: white;
+}
+
+/* Hover effect for the label */
+input[type="radio"] + label:hover {
+    background-color: #1e2156;
+    color: white;
+}
+
+
+
+
+footer a:hover {
+    color: red;
+}
+
+
+.logout-btn {
+        background-color: #9e495d; 
+        color: #ffffff; 
+        border: none;
+        padding: 5px 10px; /* Adjusted padding */
+        border-radius: 5px; 
+        cursor: pointer;
+        text-decoration: none; 
+        position: absolute;
+    left: 1350px; 
+    top: 250px; 
+    }
+
+    .logout-btn:hover {
+        background-color: #612131; 
+         
+    }
+
+   
+
+    .add-customer-btn {
+        background-color: #205b39; 
+        color: #ffffff; 
+        border: none;
+        padding: 5px 10px; /* Adjusted padding */
+        border-radius: 5px; 
+        cursor: pointer;
+        text-decoration: none; 
+       
+    }
+
+    .add-customer-btn:hover {
+        background-color: #09441b; 
+         
+    }
+
+    .delete-customer-btn {
+        background-color: #f30404; 
+        color: #ffffff; 
+        border: none;
+        padding: 5px 10px; /* Adjusted padding */
+        border-radius: 5px; 
+        cursor: pointer;
+        text-decoration: none; 
+       
+    }
+
+    .delete-customer-btn:hover {
+        background-color: #650a0a; 
+         
+    }
+
+    .search-customer-btn {
+        background-color: #dece46; 
+        color: #111111; 
+        border: none;
+        padding: 5px 10px; /* Adjusted padding */
+        border-radius: 5px; 
+        cursor: pointer;
+        text-decoration: none; 
+       
+    }
+
+    .search-customer-btn:hover {
+        background-color: #645f0d; 
+         
+    }
+
+    .back-btn {
+        background-color: #5441b0; 
+        color: #ffffff; 
+        border: none;
+        padding: 5px 10px; /* Adjusted padding */
+        border-radius: 5px; 
+        cursor: pointer;
+        text-decoration: none; /* Make sure the anchor tag does not have underline */
+    }
+
+    .back-btn:hover {
+        background-color: #230540; 
+         
+    }
+
+
+.rememberPassword {
+    margin-bottom: 20px; /* Adjust as needed */
+}
+
+
+
+
+.customer-btn {
+    background-color: #054135; 
+    color: #bdbca0; 
+    border: none;
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    font-size: 25px;
+    height: 100px;
+    width: 300px; 
+}
+
+.customer-btn:hover {
+    background-color: #2e8b78; 
+     
+}
+
+.merchant-btn {
+    background-color: #1f0541; 
+    color: #bdbca0; 
+    border: none;
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    font-size: 25px;
+    height: 100px;
+    width: 300px; 
+}
+
+.merchant-btn:hover {
+    background-color: #603c90; 
+     
+}
+
+.login-btn {
+    background-color: #a977d6; 
+    color: #ffffff; 
+    border: none;
+    padding: 10px 20px; 
+    border-radius: 5px; 
+   margin:0;
+}
+
+
+.login-btn:hover {
+    background-color: #3d1946; 
+     
+}
+
+.get-otp-btn {
+    background-color: #f03c5d; 
+    color: #ffffff; 
+    border: none;
+    padding: 10px 20px; 
+    border-radius: 5px; 
+   
+    height: 40px;
+    width: 330px; 
+}
+
+
+.get-otp-btn:hover {
+    background-color: #c35ca0; 
+     
+}
+
+.register-btn {
+    background-color: #095f4f; 
+    color: #ffffff; 
+    border: none;
+    padding: 10px 20px; 
+    border-radius: 5px; 
+   
+    height: 40px;
+    width: 400px; 
+}
+
+
+.register-btn:hover {
+    background-color: #70afa0; 
+     
+}
+
+.save-btn {
+    background-color: #854c18; 
+    color: #ffffff; 
+    border: none;
+    padding: 10px 20px; 
+    border-radius: 5px; 
+   
+    height: 40px;
+    width: 350px; 
+}
+
+
+.save-btn:hover {
+    background-color: #d6ae83; 
+     
+}
+
+
+.update-btn {
+    background-color: #499e74; 
+    color: #ffffff; 
+    border: none;
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer;
+    width: 250px;
+}
+
+
+.update-btn:hover {
+    background-color: #184621; 
+}
+.cancelcustomer-btn {
+    display: inline-block; /* or display: block; */
+    background-color: #854c18; 
+    color: #fffcfc; 
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px; 
+    cursor: pointer;
+    height: 29px;
+    width: 250px;
+    text-decoration: none;
+    text-align: center; /* Center text */
+    line-height: 29px; /* Vertically center text */
+}
+
+.cancelcustomer-btn:hover {
+    background-color: #d6ae83; 
+}
+
+.editcustomer-btn {
+    display: inline-block; /* or display: block; */
+    background-color: #9ebe4e; 
+    color: #fffcfc; 
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px; 
+    cursor: pointer;
+    height: 15px;
+    width: 47x;
+    text-decoration: none;
+    text-align: center; /* Center text */
+    line-height: 17px; /* Vertically center text */
+}
+
+.editcustomer-btn:hover {
+    background-color: #d6ae83; 
+}
+
+
+.addCustomer-btn {
+    background-color: #499e74; 
+    color: #ffffff; 
+    border: none;
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer;
+    width: 250px
+}
+
+
+.addCustomer-btn:hover {
+    background-color: #184621; 
+}
+
+
+.change-password-link {
+    margin-left: 1200px;
+    font-size: 18px;
+    color: #1b7a5c; /* Change the color */
+    text-decoration: none; /* Remove underline */
+}
+
+.change-password-link:hover {
+    color: #1e473a; /* Change the hover color */
+}
+
+.registration-link {
+    font-size: 15px;
+    color: #8536ed; /* Change the color */
+    text-decoration: none; /* Remove underline */
+}
+
+fieldset {
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 10px; /* Add border radius for rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+    padding: 20px; /* Add padding inside the fieldset */
+}
+
+
+.registration-link:hover {
+    color: #27073e; /* Change the hover color */
+}
+
+.login-link {
+    font-size: 15px;
+    color: #8536ed; /* Change the color */
+    text-decoration: none; /* Remove underline */
+}
+
+
+.login-link:hover {
+    color: #27073e; /* Change the hover color */
+}
+
+.forget-password-link {
+    font-size: 15px;
+    color: #8536ed; /* Change the color */
+    text-decoration: none; /* Remove underline */
+    position: absolute;
+    left: 1050px; 
+    bottom: 24px; 
+}
+.forget-password-link:hover {
+    color: #a71919; /* Change the hover color */
+}
+.nav-container {
+    display: flex;
+    justify-content: space-around; /* Distribute items evenly along the main axis */
+    align-items: center; /* Center items vertically */
+    height: auto; /* Adjust as needed */
+    background-color: #5d77bf;
+    padding: 20px;
+    margin-top: 0;
+    width: 100%;
+}
+.nav-btn {
+    text-decoration: none;
+    color: #89b3ca; 
+    background-color: #242137; 
+    transition: background-color 0.3s;
+    margin:0 
+}
+
+.nav-btn.active {
+    background-color:  #658ba8; /* Set the background color for active link */
+    color: #fff; /* Set the text color for active link */
+}
+
+.nav-btn:hover {
+    background-color: #658ba8; 
+}
+
+.logged-in-text {
+    font-family: Arial, sans-serif;
+    color: #20346b;
+    font-size: 20px; /* Increase the font size */
+    padding-left: 40px; 
+}
+
+a {
+    color: #f7eb04; 
+    text-decoration: none; 
+    padding: 20px;
+    transition: color 0.3s ease; 
+}
+
+a:hover {
+    color: #f7f7f7; 
+}
+
+
+/* external.css */
+
+.table-container {
+    border: 1px solid #a0c5ed;
+    border-radius: 5px;
+    overflow: hidden; /* Hide overflow content */
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-container th, .table-container td {
+    border: 1px solid #ace0d5;
+    text-align: left;
+    padding: 8px;
+}
+
+.table-container th {
+    background-color: #9b9ae8;
+}
+
+.table-container tr:nth-child(even) {
+    background-color: #b9d2f5;
+}
+
+.customer-table {
+    width: 70%; /* Adjust the width as needed */
+}
+
+.table-container {
+    overflow-x: auto; /* Enable horizontal scrolling if the table width exceeds the container width */
+}
+

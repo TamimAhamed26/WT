@@ -198,6 +198,7 @@ function validateAllFields() {
         allFieldsValid = false;
     }
 
+    
     fields.forEach(field => {
       const isValid = validateField(field.fieldName, field.errorId, field.errorMessage, field.pattern || pattern);
       if (!isValid) {
@@ -208,3 +209,21 @@ function validateAllFields() {
     return allFieldsValid;
 }
 
+function updateLastModified() {
+  var now = new Date();
+  var formattedDate = now.toLocaleString();
+  var expirationDate = new Date(now.getTime() + 600000); // 10 minutes from now
+  localStorage.setItem('lastModified', JSON.stringify({date: formattedDate, expires: expirationDate}));
+  document.getElementById('lastModified').innerText = formattedDate;
+}
+
+function checkLastModified() {
+  var savedData = JSON.parse(localStorage.getItem('lastModified'));
+  if (savedData && new Date() < new Date(savedData.expires)) {
+      document.getElementById('lastModified').innerText = savedData.date;
+  } else {
+      updateLastModified();
+  }
+}
+
+window.onload = checkLastModified;

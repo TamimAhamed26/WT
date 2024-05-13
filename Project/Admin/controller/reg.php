@@ -16,8 +16,7 @@ if (isset($_POST['save_draft'])) {
         setcookie($key, test_input($value), time() + (86400 * 1), "/"); // 
     }
     
-    date_default_timezone_set('Asia/Dhaka');
-    setcookie('last_modified', date("Y-m-d H:i:s"), time() + (86400 * 1), "/"); 
+    
 
     session_unset();
     session_destroy();

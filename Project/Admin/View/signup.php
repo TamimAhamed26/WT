@@ -73,14 +73,9 @@ $website=isset($_COOKIE['website'])?$_COOKIE['website']:'';
         <h2 style="text-align: center; font-style: italic ;">Signup Page</h2>
         <form method="post" action="../controller/reg.php" autocomplete="off" novalidate onsubmit="return validateAllFields()">
          
-    <h3><b>Last Modified on: </b>  
-    <?php
-    if (isset($_COOKIE['last_modified'])) {
-        echo $_COOKIE['last_modified'];
-    } else {
-        echo ""; 
-    }
-    ?>
+        <h3><b>Last Modified on: </b>  
+            <span id="lastModified"></span> 
+            </h3>
    
    
          <table>
@@ -207,7 +202,7 @@ $website=isset($_COOKIE['website'])?$_COOKIE['website']:'';
                                                        
                                                     </fieldset>
                                                     <input type="submit" name="register" value="Register">
-                                                    <input type="submit" name="save_draft" value="Save as Draft">
+                                                    <input type="submit" name="save_draft" value="Save as Draft" onclick="updateLastModified(); return false;">
                                                 </td>
                                             
                                                 <td>
@@ -365,7 +360,38 @@ $website=isset($_COOKIE['website'])?$_COOKIE['website']:'';
             </div>
             <footer>
            <?php include 'Footer.html'; ?> </footer>
-                    <script src="../JS/signup.js"></script>
+
+           <script>
+          function updateLastModified() {
+    var now = new Date();
+    
+    var formattedDate = now.toLocaleString();
+    // Save the current date and time to localStorage
+    localStorage.setItem('lastModified', formattedDate);
+    localStorage.setItem('lastModifiedTime', now.getTime());
+    // Update the "Last Modified on" text
+    document.getElementById('lastModified').innerText = formattedDate;
+}
+
+
+function isDateWithinLast10Minutes(savedTime) {
+    var now = new Date().getTime();
+    var tenMinutes = 1000 * 60 * 10; // 10 minutes in milliseconds
+    return (now - savedTime) <= tenMinutes;
+}
+
+
+function loadLastModified() {
+    var savedTime = localStorage.getItem('lastModifiedTime');
+    if (savedTime && isDateWithinLast10Minutes(parseInt(savedTime))) {
+        var lastModified = localStorage.getItem('lastModified');
+        document.getElementById('lastModified').innerText = lastModified;
+    }
+}
+
+
+window.onload = loadLastModified;
+</script>                  
                     </body>
                     
                
