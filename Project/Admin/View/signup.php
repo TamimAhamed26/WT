@@ -202,7 +202,7 @@ $website=isset($_COOKIE['website'])?$_COOKIE['website']:'';
                                                        
                                                     </fieldset>
                                                     <input type="submit" name="register" value="Register">
-                                                    <input type="submit" name="save_draft" value="Save as Draft" onclick="updateLastModified(); return false;">
+                                                    <input type="submit" name="save_draft" value="Save as Draft" onclick="return updateLastModifiedAndSaveDraft();">
                                                 </td>
                                             
                                                 <td>
@@ -359,39 +359,8 @@ $website=isset($_COOKIE['website'])?$_COOKIE['website']:'';
             </form>
             </div>
             <footer>
-           <?php include 'Footer.html'; ?> </footer>
-
-           <script>
-          function updateLastModified() {
-    var now = new Date();
-    
-    var formattedDate = now.toLocaleString();
-    // Save the current date and time to localStorage
-    localStorage.setItem('lastModified', formattedDate);
-    localStorage.setItem('lastModifiedTime', now.getTime());
-    // Update the "Last Modified on" text
-    document.getElementById('lastModified').innerText = formattedDate;
-}
-
-
-function isDateWithinLast10Minutes(savedTime) {
-    var now = new Date().getTime();
-    var tenMinutes = 1000 * 60 * 10; // 10 minutes in milliseconds
-    return (now - savedTime) <= tenMinutes;
-}
-
-
-function loadLastModified() {
-    var savedTime = localStorage.getItem('lastModifiedTime');
-    if (savedTime && isDateWithinLast10Minutes(parseInt(savedTime))) {
-        var lastModified = localStorage.getItem('lastModified');
-        document.getElementById('lastModified').innerText = lastModified;
-    }
-}
-
-
-window.onload = loadLastModified;
-</script>                  
+           <?php include 'Footer.html'; ?> 
+        </footer>                  
                     </body>
                     
                

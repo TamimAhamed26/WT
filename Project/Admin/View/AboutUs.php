@@ -2,24 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=], initial-scale=1.0">
-    <title>AboutUs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
 </head>
 <body>
-<div align="right">
-    <?php
-    session_start();
-    if(isset($_SESSION['username'])) {
-        echo '<a href="user_dashboard.php">Back</a>';
-    } else {
-        echo '<a href="login.php">Back</a>';
-    }
-    ?>
-</div>
+    <div align="right">
+        <?php
+        session_start();
+        if (isset($_SESSION['username'])) {
+            echo '<a href="user_dashboard.php">Back</a>';
+        } else {
+            echo '<a href="login.php">Back</a>';
+        }
+        ?>
+    </div>
+    <select id="languageSelect">
+        <option value="en">English</option>
+        <option value="bn">Bangla</option>
+    </select>
+    <div class="header-text">
+        <p class="welcomeMessage"></p>
+    </div>
+    <script>
+        window.onload = function() {
+            var languageSelect = document.getElementById('languageSelect');
+            var welcomeMessage = document.querySelector('.welcomeMessage');
 
-    <p>Welcome to xyz bank, where your financial well-being is our top priority. With a rich history spanning over 99 years, we have been dedicated to serving our customers with integrity, security, and innovation. As a trusted institution, 
-        we are committed to providing personalized solutions tailored to meet your unique financial needs, whether it's managing your savings, securing a loan, or planning for the future. Our team of experienced professionals is here to guide you 
-        every step of the way, ensuring that you have the support and expertise you deserve. At xyz, we strive to build lasting relationships built on trust, reliability, and exceptional service. Join us on the journey towards financial success and prosperity
-    </p>
+      
+            loadLanguageContent('en', welcomeMessage);
+
+            languageSelect.addEventListener('change', function() {
+                var selectedLanguage = this.value;
+                loadLanguageContent(selectedLanguage, welcomeMessage);
+            });
+        }
+
+        function loadLanguageContent(language, element) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '../JS/about_us_' + language + '.json', true);
+            xhr.onload = function() {
+                if (this.status == 200) {
+                    var languageData = JSON.parse(this.responseText);
+                    element.textContent = languageData.welcomeMessage;
+                }
+            };
+            xhr.send();
+        }
+    </script>
 </body>
 </html>

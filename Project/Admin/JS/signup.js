@@ -208,22 +208,64 @@ function validateAllFields() {
   
     return allFieldsValid;
 }
-
-function updateLastModified() {
+function updateLastModifiedAndSaveDraft() {
   var now = new Date();
   var formattedDate = now.toLocaleString();
   var expirationDate = new Date(now.getTime() + 600000); // 10 minutes from now
-  localStorage.setItem('lastModified', JSON.stringify({date: formattedDate, expires: expirationDate}));
+  localStorage.setItem('lastModified', JSON.stringify({ date: formattedDate, expires: expirationDate }));
+
+  // Save form data into cookies
+  const formFields = document.querySelectorAll('input[type=text], input[type=password], input[type=email], select, input[type=radio]:checked, input[type=url], input[type=tel]');
+  formFields.forEach(field => {
+    setCookie(field.id, field.value, 1 / 144); // 10 minutes expiration (in days)
+  });
+
   document.getElementById('lastModified').innerText = formattedDate;
+  return false; // Prevent form submission
 }
 
-function checkLastModified() {
+function checkLastModifiedAndLoadDraft() {
   var savedData = JSON.parse(localStorage.getItem('lastModified'));
   if (savedData && new Date() < new Date(savedData.expires)) {
-      document.getElementById('lastModified').innerText = savedData.date;
+    document.getElementById('lastModified').innerText = savedData.date;
   } else {
-      updateLastModified();
+    updateLastModifiedAndSaveDraft();
   }
+
+  document.querySelectorAll('input, select').forEach(function(input) {
+    var savedValue = getCookie(input.id);
+    if (savedValue) {
+      if (input.type === 'radio') {
+        // Check the radio button with the saved value
+        document.querySelectorAll(`input[name="${input.name}"][value="${savedValue}"]`).forEach(radio => {
+          radio.checked = true;
+        });
+      } else {
+        input.value = savedValue;
+      }
+    }
+  });
 }
 
-window.onload = checkLastModified;
+function setCookie(name, value, days) {
+  var expires = "";
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
+}
+
+window.onload = checkLastModifiedAndLoadDraft;
