@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once '../Model/database_model.php';
 require_once '../Controller/validation_model.php';
 if (session_status() == PHP_SESSION_NONE) {
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    if ((empty($_SESSION['firstName_error']) && $_SESSION['firstName_error']) && empty($_SESSION['lastName_error']) && empty($_SESSION['gender_error']) && empty($_SESSION['phone_error']) && empty($_SESSION['email_error']) && empty($_SESSION['dateOfBirth_error']) && empty($_SESSION['streetAddress_error']) && empty($_SESSION['city_error']) && empty($_SESSION['state_error']) && empty($_SESSION['postalCode_error'])){
+    if (empty($_SESSION['firstName_error'])  && empty($_SESSION['lastName_error']) && empty($_SESSION['gender_error']) && empty($_SESSION['phoneNumber_error']) && empty($_SESSION['email_error']) && empty($_SESSION['dateOfBirth_error']) && empty($_SESSION['streetAddress_error']) && empty($_SESSION['city_error']) && empty($_SESSION['state_error']) && empty($_SESSION['postalCode_error'])){
             $user = array(
                 'first_name' => $firstName,
                 'last_name' => $lastName,

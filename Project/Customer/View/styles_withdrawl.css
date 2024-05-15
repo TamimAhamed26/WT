@@ -1,0 +1,75 @@
+
+
+body {
+    margin-top: 100px;
+    padding: 10px;
+    background-image: url('pp/pro.jpg'); /* Path to your background image */
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+.header {
+    background-color: #413f61;
+    color: #f7dada;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure the header is above other elements */
+}
+
+
+
+.aiub h1 {
+    text-align: center;
+    color: rgb(223, 4, 22);
+    font-size: 36px;
+}
+
+.aiub h5 {
+    text-align: center;
+    color: rgb(239, 167, 73);
+    font-size: 18px;
+}
+.user{
+    text-align: center;
+    color: #8bf079; 
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(224, 7, 7, 0.5) inset; /* Apply box shadow inside the border */
+    background-clip: padding-box; /* Clip the background to the padding box */
+    backdrop-filter: blur(35px); /* Apply blur effect */
+}
+
+input, select, button {
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+footer {
+    color: aqua;
+    position: fixed;
+    bottom: 0;
+    width: 97%;
+    background-color: #151414;
+    padding: 0;
+    text-align: center;
+}

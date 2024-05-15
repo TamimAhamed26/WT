@@ -1,0 +1,85 @@
+
+body {
+    margin-top: 100px;
+    padding: 10px;
+    background-image: url('pp/pp1.jpg'); /* Path to your background image */
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    border: 2px solid #eb1017;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset; /* Apply box shadow inside the border */
+    background-clip: padding-box; /* Clip the background to the padding box */
+    backdrop-filter: blur(70px); /* Apply blur effect */
+}
+
+.title {
+    text-align: center;
+    color: rgb(223, 4, 22);
+    font-size: 36px;
+}
+
+.subtitle {
+    text-align: center;
+    color: rgb(239, 167, 73);
+    font-size: 18px;
+}
+
+.heading {
+    text-align: center;
+}
+
+.form {
+    max-width: 500px;
+    margin: auto;
+}
+
+.fieldset {
+    border: 2px solid rgb(195, 17, 183);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset; /* Apply box shadow inside the border */
+    background-clip: padding-box; /* Clip the background to the padding box */
+    backdrop-filter: blur(35px); /* Apply blur effect */
+}
+
+.legend {
+    color: #94d7ee; /* Change to your desired legend text color */
+}
+
+.input {
+    width: 100%;
+    padding: 8px;
+    margin: 6px 0;
+    border: 1px solid #a10c0c;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    background-color: #dc3545; /* Red color for submit button */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #f04858; /* Darker red color on hover for submit button */
+}
+
+/* Footer styling */
+.footer {
+    color: aqua;
+    position: fixed;
+    bottom: 0;
+    width: 97%;
+    background-color: #151414;
+    padding: 0;
+    text-align: center;
+}

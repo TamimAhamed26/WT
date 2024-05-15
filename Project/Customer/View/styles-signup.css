@@ -1,0 +1,105 @@
+
+
+body {
+    margin-top: 100px;
+    
+    padding: 10px;
+    background-image: url('pp/pp1.jpg'); /* Path to your background image */
+    background-size: cover;
+    
+    font-family: Arial, sans-serif;
+}
+.container {
+    border: 2px solid #eb1017;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset; /* Apply box shadow inside the border */
+    background-clip: padding-box; /* Clip the background to the padding box */
+    backdrop-filter: blur(70px); /* Apply blur effect */
+}
+
+.aiub h1 {
+    text-align: center;
+    color: rgb(223, 4, 22);
+    font-size: 36px;
+   
+}
+
+.aiub h5 {
+    text-align: center;
+    color: rgb(239, 167, 73);
+    font-size: 18px;
+}
+/* Legend styling */
+.legend {
+    color: #94d7ee; /* Change to your desired legend text color */
+}
+
+/* Label styling */
+label {
+    color: #3a065e; /* Change to your desired label text color */
+}
+legend + table th:first-of-type {
+    color: #3a065e; /* Change to your desired color for the Gender label */
+}
+
+/* Input field styling */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 6px 0;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+/* Button styling */
+input[type="submit"] {
+    background-color: #007bff; /* Change to your desired button background color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+input[type="text"]:hover {
+    background-color: #eb35d3; /* Change to your desired button hover background color */
+}
+input[type="email"]:hover {
+    background-color: #eb35d3; /* Change to your desired button hover background color */
+}
+input[type="url"]:hover {
+    background-color: #eb35d3; /* Change to your desired button hover background color */
+}
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Change to your desired button hover background color */
+}
+input[type="tel"]:hover {
+    background-color: #eb35d3; /* Change to your desired button hover background color */
+}
+input[type="password"]:hover {
+    background-color: #96c3f3; /* Change to your desired button hover background color */
+}
+
+
+/* Footer styling */
+footer {
+    color: aqua;
+    position: fixed;
+    bottom: 0;
+    width: 97%;
+    background-color: #151414;
+    padding: 0;
+    text-align: center;
+}
+
+
+

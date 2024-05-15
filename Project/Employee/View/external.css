@@ -114,6 +114,23 @@ footer a:hover {
          
     }
 
+    .edit-customer-btn {
+        background-color: #f37304; 
+        color: #ffffff; 
+        border: none;
+        padding: 5px 10px; /* Adjusted padding */
+        border-radius: 5px; 
+        cursor: pointer;
+        text-decoration: none; 
+       
+    }
+
+    .edit-customer-btn:hover {
+        background-color: #372208; 
+         
+    }
+
+
     .search-customer-btn {
         background-color: #dece46; 
         color: #111111; 
@@ -382,22 +399,38 @@ fieldset {
     margin-top: 0;
     width: 100%;
 }
+
+.nav-container {
+    display: flex;
+    justify-content: space-around; /* Distribute items evenly along the main axis */
+    align-items: center; /* Center items vertically */
+    height: auto; /* Adjust as needed */
+    background-color: #5d77bf;
+    padding: 20px;
+    margin-top: 0;
+    width: 100%;
+}
+
 .nav-btn {
     text-decoration: none;
     color: #89b3ca; 
     background-color: #242137; 
     transition: background-color 0.3s;
-    margin:0 
+    margin: 0;
+    outline: none; /* Remove the default focus outline */
 }
 
 .nav-btn.active {
-    background-color:  #658ba8; /* Set the background color for active link */
+    background-color: #658ba8; /* Set the background color for active link */
     color: #fff; /* Set the text color for active link */
 }
 
-.nav-btn:hover {
+.nav-btn:hover,
+.nav-btn:focus { /* Apply styles when hovered or focused */
     background-color: #658ba8; 
 }
+
+
 
 .logged-in-text {
     font-family: Arial, sans-serif;

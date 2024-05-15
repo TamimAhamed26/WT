@@ -15,6 +15,7 @@ $customer = getAllCustomer();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Management</title>
     <link rel="stylesheet" href="external.css">
+    
 </head>
 <body style = "margin:0">
     <?php include 'header.html'; ?>
@@ -24,14 +25,15 @@ $customer = getAllCustomer();
     <center><p style="font-size: 30px; color: #242137;">Customer Management</p>
 </center><hr>
     <center>
+    <form method="POST" action="../Controller/customer.php">
         <table >
 <tr>
-<td>
+<!--<td>
     <input type="text" id="searchCustomer" name="searchCustomer" placeholder="Search by name">
 </td><td>
-<a href="..Controller/customer.php" class="search-customer-btn">🔎 Search</a>
+<a href="../Controller/customer.php" class="search-customer-btn">🔎 Search</a>
     
-</td>
+</td>-->
 <td>
 <a href="../View/add_customer.php" class="add-customer-btn">➕ Add Customer</a>
 </td></tr><tr><td><br></td></tr>
@@ -64,12 +66,15 @@ $customer = getAllCustomer();
     </tr>
 </thead>
 <tbody>
+
     <?php foreach ($customer as $user) { ?>
     <tr>
     <td>
-        <a href="../View/edit_customer.php" class="editcustomer-btn">Edit</a>
-        <form method="POST" action="../Controller/customer.php">
-    <button type="submit" class="delete-customer-btn" name="deleteCustomer" value="<?php echo $user['customer_id']; ?>">Delete</button>  </form></td>
+       
+    
+    <button type="submit" class="delete-customer-btn" name="deleteCustomer" value="<?php echo $user['customer_id']; ?>">Delete</button>  
+    <!-- <button type="submit" class="edit-customer-btn" name="editCustomer" value="  <?php echo $user['customer_id']; ?>">Edit</button> -->
+    </td>
     <td><?php echo $user['customer_id']; ?></td>
         <td><?php echo $user['holder_name']; ?></td>
          <td> <?php echo $user['father_name']; ?></td>
@@ -92,9 +97,11 @@ $customer = getAllCustomer();
 </tr>
     
     <?php } ?>
+   
 </tbody>
 
 </table>
+</form>
 <br>
 </div>
 

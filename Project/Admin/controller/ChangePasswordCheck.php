@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if the new password is the same as the current password
     $username = $_SESSION['username'];
-    if (login($username, $cur_password)) {
+    if (login($username, $cur_password, 'user')) {
         if ($new_password === $cur_password) {
             $_SESSION['change_password_error'] = "New password cannot be the same as the current password";
             header("Location: ../View/changePassword.php");

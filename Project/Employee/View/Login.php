@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $username_cookie = isset($_COOKIE['username']) ? $_COOKIE['username'] : '';
 ?>
 

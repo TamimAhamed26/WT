@@ -66,6 +66,12 @@ $phone = isset($_COOKIE['phone']) ? $_COOKIE['phone'] : '';
     <form action="../Controller/modify_appointment.php" method="POST"  novalidate onsubmit="return validateAppointment()"  autocomplete="off" style= "background-color: #d2f5f6;">
     <fieldset>
     <table>
+    <tr><td></td>
+    <td style="text-align: right;">
+        <a href="../View/appointmentList.php" class="edit-customer-btn" style="width: 65px; height: 20px;">All Appointment List</a>
+    </td>
+</tr>
+<tr><td><br></td></tr>
     <tr>
     <td>Date</td>
     <td>
@@ -116,7 +122,7 @@ $phone = isset($_COOKIE['phone']) ? $_COOKIE['phone'] : '';
         <?php echoErrorMessage('email'); ?>
     </td>
 </tr>
-
+<tr><td><br></td></tr>
 
 <tr>
     <td><input type="submit" name="SetAppointment" value="Set" class="addCustomer-btn"></td>

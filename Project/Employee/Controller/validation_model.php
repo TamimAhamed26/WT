@@ -184,13 +184,28 @@ function isWithin30Minutes($existingTime, $newTime) {
     return $differenceInMinutes <= 30;
 }
 
+function validateAmount($fieldName, $errorMessage) {
+    if (empty($_POST[$fieldName])) {
+        $_SESSION[$fieldName . '_error'] = $errorMessage;
+    } else {
+        $amount = floatval($_POST[$fieldName]);
+        if ($amount < 500 || $amount > 50000) {
+            $_SESSION[$fieldName . '_error'] = "Amount must be between 500 and 50,000";
+        } else {
+            return $amount;
+        }
+    }
+}
+
+
+
 function validateNID($fieldName, $errorMessage) {
     if (empty($_POST[$fieldName])) {
         $_SESSION[$fieldName . '_error'] = $errorMessage;
     } else {
         $nid = test_input($_POST[$fieldName]);
         if (!preg_match("/^[0-9]{8}$/", $nid)) {
-            $_SESSION[$fieldName . '_error'] = "Invalid NID format";
+            $_SESSION[$fieldName . '_error'] = "Invalid";
         } else {
             return $nid;
         }

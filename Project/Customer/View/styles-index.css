@@ -1,0 +1,98 @@
+body {
+    margin-top: 100px;
+    padding: 0;
+    background-image: url('pp/pp1.jpg'); /* Path to your background image */
+    background-size: cover;
+    
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 500px;
+    min-width: 500px;
+    margin:  auto;
+    
+    border: 2px solid red;
+    
+    border-radius: 175px;
+    box-shadow: 0 0 10px rgba(224, 7, 7, 0.5) inset; /* Apply box shadow inside the border */
+    background-clip: padding-box; /* Clip the background to the padding box */
+    backdrop-filter: blur(35px); /* Apply blur effect */
+}
+.container1 {
+    max-width: 500px;
+    margin:  auto;
+    
+    border: 2px solid rgb(24, 16, 245);
+    
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset; /* Apply box shadow inside the border */
+    background-clip: padding-box; /* Clip the background to the padding box */
+    backdrop-filter: blur(35px); /* Apply blur effect */
+}
+
+.container2 {
+    max-width: 500px;
+    margin:  auto;
+    margin-bottom: 19px;
+    border: 2px solid rgb(57, 231, 18);
+    
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset; /* Apply box shadow inside the border */
+    background-clip: padding-box; /* Clip the background to the padding box */
+    backdrop-filter: blur(35px); /* Apply blur effect */
+}
+
+.container h1 {
+    text-align: center;
+    color: rgb(223, 4, 22);
+    font-size: 36px;
+}
+
+.container h5 {
+    text-align: center;
+    color: rgb(239, 167, 73);
+    font-size: 18px;
+}
+
+.container form {
+    text-align: center;
+    color: #94d7ee;
+}
+.container legend {
+    color: #94d7ee; /* Change to your desired text color */
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Change to desired button color */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+.button:hover {
+    background-color: #0056b3; /* Change to desired button hover color */
+}
+.button1 {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0af30e; /* Change to desired button color */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+.button1:hover {
+    background-color: #3a773d; /* Change to desired button hover color */
+}
+footer {
+    color: aqua;
+    position: fixed;
+    bottom: 0;
+    width: 97%;
+    background-color: #151414;
+    padding: 0;
+    text-align: center;
+}

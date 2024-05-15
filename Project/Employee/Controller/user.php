@@ -3,6 +3,7 @@ require_once '../Model/database_model.php';
 require_once '../Controller/validation_model.php';
 session_start();
 
+
 $username = test_input($_POST['username']); 
 $password = test_input($_POST['password']);
 $remember = isset($_POST['rememberPassword']) ? true : false;

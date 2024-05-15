@@ -1,0 +1,109 @@
+/* styles.css */
+
+
+
+body {
+    margin-top: 100px;
+    padding: 10px;
+    background-image: url('pp/pro.jpg'); /* Path to your background image */
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+.header {
+    background-color: #413f61;
+    color: #f7dada;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure the header is above other elements */
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.aiub h1 {
+    text-align: center;
+    color: rgb(223, 4, 22);
+    font-size: 36px;
+}
+
+.aiub h5 {
+    text-align: center;
+    color: rgb(239, 167, 73);
+    font-size: 18px;
+}
+.user{
+    color: #8bf079; 
+}
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+form {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+input[type="number"]:hover {
+    background-color: #eb35d3; /* Change to your desired button hover background color */
+}
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Optional: Style form elements differently */
+input[type="number"] {
+    width: calc(100% - 22px); /* Adjust width to account for padding */
+}
+
+select {
+    appearance: none; /* Remove default arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M7 10l5 5 5-5z" fill="black"/></svg>'); /* Add custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
+    cursor: pointer;
+}
+
+footer {
+    color: aqua;
+    position: fixed;
+    bottom: 0;
+    width: 97%;
+    background-color: #151414;
+    padding: 0;
+    text-align: center;
+}

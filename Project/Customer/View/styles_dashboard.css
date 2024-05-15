@@ -1,0 +1,104 @@
+
+body {
+    margin-top: 100px;
+    padding: 10px;
+    background-image: url('pp/pro.jpg'); /* Path to background image */
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+.header {
+    background-color: #413f61;
+    color: #f7dada;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /*  the header is above other elements */
+}
+
+.navbar {
+    text-align: center;
+}
+
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    display: inline;
+    margin-right: 20px;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #333;
+}
+
+
+.title {
+    text-align: center;
+    color: rgb(223, 4, 22);
+    font-size: 36px;
+}
+
+.subtitle {
+    text-align: center;
+    color: rgb(239, 167, 73);
+    font-size: 18px;
+}
+
+.table {
+    border-collapse: collapse;
+}
+
+.welcome-message {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+.balance {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+.update-profile-btn {
+    background-color: #28a745; /* Green color for update profile button */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.update-profile-btn:hover {
+    background-color: #218838; /* Darker green color on hover for update profile button */
+}
+
+.logout-btn {
+    background-color: #c12d3c; /* Red color for logout button */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #e70c22; /* Darker red color on hover for logout button */
+}
+
+
+/* Footer styling */
+footer {
+    color: aqua;
+    position: fixed;
+    bottom: 0;
+    width: 97%;
+    background-color: #151414;
+    padding: 0;
+    text-align: center;
+}

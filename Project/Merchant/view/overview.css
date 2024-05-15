@@ -1,0 +1,27 @@
+body {
+  background-color: lightblue;
+}
+
+h1 {
+  color: navy;
+  margin-left: 20px;
+  text-decoration: underline 5px;
+}
+h2{
+  color: blueviolet;
+  text-decoration: underline 3px;
+}
+input[type=submit] {
+  background-color:azure;
+  border-radius: 10px;
+  width: 200px;
+  height: 35px;
+}
+input[type=text] {
+  background-color:cornsilk;
+  border-radius: 5px;
+  width: 350px;
+  height: 30px;
+  padding: 10px 10px 10px 10px;
+  overflow:auto;
+}

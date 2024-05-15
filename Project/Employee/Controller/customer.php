@@ -85,7 +85,9 @@ else if  ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['addCustomer'])) 
         exit();
     }
 }
-
+else if  ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['editCustomer'])) {
+    header("Location: ../View/edit_customer.php");
+}
 
  else {
     header("Location: ../View/manage_customer.php");

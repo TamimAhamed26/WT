@@ -26,8 +26,8 @@ function loginEmployee($username, $password) {
     $result = mysqli_stmt_get_result($statement);
     $user = mysqli_fetch_assoc($result);
  
-    if ($user['username']==$username ) {           //to check case sensivity;can do the same from database
-                                         //structure by changing collation to utf8_general_ci for username  column     
+    if ($user['username']==$username ) {          
+                                          
         return true;  
     }
     return false;
@@ -172,6 +172,40 @@ mysqli_stmt_bind_param($stmt, "sssssssssss",
 
 }
 
+
+//*********************************Customer************************ */
+
+function searchCustomer($searchTerm) {
+    $conn = getDatabaseConnection();
+    
+    $sql_stmt = "SELECT * FROM customer WHERE holder_name LIKE ?";
+    $stmt = mysqli_prepare($conn, $sql_stmt);
+    
+    // Bind the search term with wildcard characters to search for partial matches
+    $searchTerm = '%' . $searchTerm . '%';
+    mysqli_stmt_bind_param($stmt, "s", $searchTerm);
+    
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    
+    // Fetch the results as an associative array
+    if (!$result) {
+        return []; // Return an empty array if no results found
+    }
+    
+    // Fetch the results as an associative array
+    $customers = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $customers[] = $row;
+    }
+    
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    
+    return $customers;
+}
+
+
 function deleteCustomer($id) {
     $conn = getDatabaseConnection();
     
@@ -185,11 +219,15 @@ function deleteCustomer($id) {
     }
 }
 
-function editCustomer($user) {
+function editCustomer($user, $id) {
     $conn = getDatabaseConnection();
     
     // Prepare the SQL statement with parameter placeholders
-    $sql_stmt = "UPDATE customer SET holder_name=?, 
+    $sql_stmt = "UPDATE customer 
+    SET 
+    username = ?,
+    password = ?,
+    holder_name=?, 
     father_name=?,
      mother_name=?,
       message=?, 
@@ -202,13 +240,16 @@ function editCustomer($user) {
          religion=?,
           city=?,
            country=? 
-           WHERE username = ?";
+           WHERE customer_id = ?";
     
     // Prepare the statement
     $stmt = mysqli_prepare($conn, $sql_stmt);
     
     // Bind parameters
-    mysqli_stmt_bind_param($stmt, "ssssssssssssss", $user['holder_name'], 
+    mysqli_stmt_bind_param($stmt, "ssssssssssssssss", 
+    $user['username'], 
+    $user['password'], 
+    $user['holder_name'], 
     $user['father_name'], 
     $user['mother_name'], 
     $user['message'], 
@@ -221,21 +262,19 @@ function editCustomer($user) {
     $user['religion'],
     $user['city'], 
     $user['country'],
-    $username);
+    $id);
 
     
     // Execute the statement
     if (mysqli_stmt_execute($stmt)) {
-        // If execution is successful, return true
+        mysqli_stmt_close($stmt);
+    mysqli_close($conn);
         return true;
-    } else {
-        // If execution fails, return false
-        return false;
-    }
-    
+    } else{
     // Close the statement and connection
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
+    }
 }
 
 function getCustomerEmail($email) {
@@ -382,6 +421,78 @@ function addCustomer($customer) {
     mysqli_close($conn);
 }
 
+
+
+//////////************************Appointment*************************** */
+function deleteAppointment($id) {
+    $conn = getDatabaseConnection();
+    
+    $sql_stmt = "DELETE FROM appointment WHERE appointment_id = '{$id}'";
+
+    if (mysqli_query($conn, $sql_stmt)) { 
+        return true;
+    } else {
+        echo "Error deleting profile: " . mysqli_error($conn);
+        return false;
+    }
+}
+
+function addAppointment($customer) {
+    $conn = getDatabaseConnection();
+    
+    // Prepare the SQL statement
+    $sql_stmt = "INSERT INTO appointment (date, time, purpose, name, email, phone) 
+    VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conn, $sql_stmt);
+    
+    // Bind parameters
+    mysqli_stmt_bind_param($stmt, "ssssss", 
+        $customer['date'], 
+        $customer['time'], 
+        $customer['purpose'], 
+        $customer['name'], 
+        $customer['email'], 
+        $customer['phone']
+    );
+    mysqli_stmt_execute($stmt);
+
+
+    if(mysqli_stmt_errno($stmt)) {
+        echo "Error: " . mysqli_stmt_error($stmt);
+    } else {
+        echo "Appointment added successfully!";
+    }
+    mysqli_stmt_close($stmt);
+    
+ 
+    mysqli_close($conn);
+}
+
+
+function getAllAppointment() {
+    $conn = getDatabaseConnection();
+    
+    // Prepare the SQL statement
+    $sql = "SELECT * FROM appointment";
+    
+    // Execute the statement
+    $result = mysqli_query($conn, $sql);
+    
+    $users = array();
+    
+    // Fetch results
+    if ($result !== false) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $users[] = $row;
+        }
+    }
+    
+    // Close connection
+    mysqli_close($conn);
+    
+    return $users;
+}
+
 function getExistingTimeForDate($date) {
     // Get database connection
     $conn = getDatabaseConnection();
@@ -415,21 +526,236 @@ function getExistingTimeForDate($date) {
 }
 
 
-function addAppointment($customer) {
+
+//*********************************Merchant************************ */
+
+function deleteMerchant($id) {
+    $conn = getDatabaseConnection();
+    
+    $sql_stmt = "DELETE FROM merchant WHERE Serial = '{$id}'";
+
+    if (mysqli_query($conn, $sql_stmt)) { 
+        return true;
+    } else {
+        echo "Error deleting profile: " . mysqli_error($conn);
+        return false;
+    }
+}
+
+function getMerchantEmail($email) {
+    $conn = getDatabaseConnection();
+    
+    $sql_stmt = "SELECT * FROM merchant WHERE Email=?";
+    $stmt = mysqli_prepare($conn, $sql_stmt);
+    
+
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    
+    mysqli_stmt_execute($stmt);
+    
+    $result = mysqli_stmt_get_result($stmt);
+    
+    $emailData = mysqli_fetch_assoc($result);
+    
+    return $emailData;
+}
+
+function getMerchantEmailExcept($email, $username) {
+    $conn = getDatabaseConnection();
+    
+    $sql_stmt = "SELECT * FROM merchant WHERE Email=? AND Username!=?";
+    $stmt = mysqli_prepare($conn, $sql_stmt);
+    mysqli_stmt_bind_param($stmt, "ss", $email, $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    
+    if (mysqli_num_rows($result) > 0) {
+        return true;
+    }
+    
+    return false;
+}
+
+function getMerchant($username) {
+    $conn = getDatabaseConnection();
+    
+    $sql_stmt = "SELECT * FROM merchant WHERE Username=?";
+    $stmt = mysqli_prepare($conn, $sql_stmt);
+    
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    
+    $user = mysqli_fetch_assoc($result);
+    
+    return $user;
+}
+
+function getMerchantById($id) {
     $conn = getDatabaseConnection();
     
     // Prepare the SQL statement
-    $sql_stmt = "INSERT INTO appointment (date, time, purpose, name, email, phone) 
-    VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "SELECT * FROM merchant WHERE Username = ?";
+    
+    // Prepare the statement
+    $stmt = mysqli_prepare($conn, $sql);
+    
+    // Bind parameter
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    
+    // Execute the statement
+    mysqli_stmt_execute($stmt);
+    
+    // Get result
+    $result = mysqli_stmt_get_result($stmt);
+    
+    // Fetch user information
+    $user = mysqli_fetch_assoc($result);
+    
+    // Close statement and connection
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    
+    return $user;
+}
+
+
+function getAllMerchant() {
+    $conn = getDatabaseConnection();
+    
+    // Prepare the SQL statement
+    $sql = "SELECT * FROM merchant";
+    
+    // Execute the statement
+    $result = mysqli_query($conn, $sql);
+    
+    $users = array();
+    
+    // Fetch results
+    if ($result !== false) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $users[] = $row;
+        }
+    }
+    
+    // Close connection
+    mysqli_close($conn);
+    
+    return $users;
+}
+
+function addMerchant($merchant) {
+    $conn = getDatabaseConnection();
+    
+    // Prepare the SQL statement
+    $sql_stmt = "INSERT INTO merchant ( FirstName, LastName, NID, PresentAddress, PermanentAddress, PhoneNumber, Email, Username, Password) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql_stmt);
     
     // Bind parameters
-    mysqli_stmt_bind_param($stmt, "ssssss", 
-        $customer['date'], 
-        $customer['time'], 
+    mysqli_stmt_bind_param($stmt, "sssssssss", 
+    $merchant['FirstName'], 
+    $merchant['LastName'], 
+    $merchant['NID'], 
+    $merchant['PresentAddress'], 
+    $merchant['PermanentAddress'], 
+    $merchant['Password'], 
+    $merchant['Email'], 
+    $merchant['Username'], 
+    $merchant['PhoneNumber']
+    );
+    mysqli_stmt_execute($stmt);
+
+
+    if(mysqli_stmt_errno($stmt)) {
+        echo "Error: " . mysqli_stmt_error($stmt);
+    } else {
+        echo "Customer added successfully!";
+    }
+    mysqli_stmt_close($stmt);
+    
+ 
+    mysqli_close($conn);
+}
+
+
+
+//////****************************************Transaction*************************** */
+
+
+function addTransaction($customer) {
+    $conn = getDatabaseConnection();
+    
+    // Prepare the SQL statement
+    $sql_stmt = "INSERT INTO transaction (accountNo, amount, description, type) 
+    VALUES (?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conn, $sql_stmt);
+    
+    // Bind parameters
+    mysqli_stmt_bind_param($stmt, "ssss", 
+        $customer['accountNo'], 
+        $customer['amount'], 
+        $customer['description'], 
+        $customer['type']
+    );
+    mysqli_stmt_execute($stmt);
+
+
+    if(mysqli_stmt_errno($stmt)) {
+        echo "Error: " . mysqli_stmt_error($stmt);
+    } else {
+        echo "Transaction added successfully!";
+    }
+    mysqli_stmt_close($stmt);
+    
+ 
+    mysqli_close($conn);
+}
+
+function addTransfer($customer) {
+    $conn = getDatabaseConnection();
+    
+    // Prepare the SQL statement
+    $sql_stmt = "INSERT INTO transfer (toAccount, fromAccount, amount, description) 
+    VALUES (?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conn, $sql_stmt);
+    
+    // Bind parameters
+    mysqli_stmt_bind_param($stmt, "ssss", 
+        $customer['toAccount'], 
+        $customer['fromAccount'], 
+        $customer['amount'], 
+        $customer['description']
+    );
+    mysqli_stmt_execute($stmt);
+
+
+    if(mysqli_stmt_errno($stmt)) {
+        echo "Error: " . mysqli_stmt_error($stmt);
+    } else {
+        echo "Tranfer added successfully!";
+    }
+    mysqli_stmt_close($stmt);
+    
+ 
+    mysqli_close($conn);
+}
+
+
+function addLoan($customer) {
+    $conn = getDatabaseConnection();
+    
+    // Prepare the SQL statement
+    $sql_stmt = "INSERT INTO loan (purpose, monthlyIncome, amount, phone) 
+    VALUES (?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conn, $sql_stmt);
+    
+    // Bind parameters
+    mysqli_stmt_bind_param($stmt, "ssss", 
         $customer['purpose'], 
-        $customer['name'], 
-        $customer['email'], 
+        $customer['monthlyIncome'], 
+        $customer['amount'], 
         $customer['phone']
     );
     mysqli_stmt_execute($stmt);
@@ -438,7 +764,7 @@ function addAppointment($customer) {
     if(mysqli_stmt_errno($stmt)) {
         echo "Error: " . mysqli_stmt_error($stmt);
     } else {
-        echo "Appointment added successfully!";
+        echo "Tranfer added successfully!";
     }
     mysqli_stmt_close($stmt);
     
@@ -446,5 +772,33 @@ function addAppointment($customer) {
     mysqli_close($conn);
 }
 
+function addAlert($customer) {
+    $conn = getDatabaseConnection();
+    
+    // Prepare the SQL statement
+    $sql_stmt = "INSERT INTO alert (type, threshold, notificationMethod, accountNo) 
+    VALUES (?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conn, $sql_stmt);
+    
+    // Bind parameters
+    mysqli_stmt_bind_param($stmt, "ssss", 
+        $customer['type'], 
+        $customer['threshold'], 
+        $customer['notificationMethod'], 
+        $customer['accountNo']
+    );
+    mysqli_stmt_execute($stmt);
+
+
+    if(mysqli_stmt_errno($stmt)) {
+        echo "Error: " . mysqli_stmt_error($stmt);
+    } else {
+        echo "alert added successfully!";
+    }
+    mysqli_stmt_close($stmt);
+    
+ 
+    mysqli_close($conn);
+}
 ?>
 

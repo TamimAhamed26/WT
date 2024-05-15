@@ -8,7 +8,13 @@ if (session_status() == PHP_SESSION_NONE) {
 
 $name = $date = $time = $purpose = $email = $phone = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['deleteAppointment'])) {
+    $id = $_POST['deleteAppointment'];
+    deleteAppointment($id);
+    header("Location: ../View/appointmentList.php");
+    exit();
+}
+else if  ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['addAppointment'])) {
     $date = validateDate("date", "Date has to be future");
     $time = validateTime("time", "Time slot not available");
     $purpose = validateField("purpose", "Purpose is required");
